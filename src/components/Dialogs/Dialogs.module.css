@@ -1,0 +1,14 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.contacts{
+    background-color: rgb(212, 208, 212);
+    text-decoration: none;
+    color: wheat;
+}
+
+.chat{
+    background-color: red;
+}

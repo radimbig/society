@@ -1,0 +1,17 @@
+.content {
+    grid-area: c;
+    background-color: rgba(73, 114, 148, 0.849);
+    
+  }
+.image {
+    height: max-content;
+}
+.image.ava{
+  width: 150px;
+  height: auto;
+}
+
+.image.large{
+  width: 1067px;
+  height: 225px;
+}

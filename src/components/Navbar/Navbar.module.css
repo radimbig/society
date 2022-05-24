@@ -1,0 +1,15 @@
+.sidebar {
+    grid-area: n;
+    background-color: rgb(165, 22, 134);
+  }
+.item{
+    color: white;
+}  
+
+.item.active {
+  color: gold;
+}
+
+.item.disable {
+  color:red;
+}
