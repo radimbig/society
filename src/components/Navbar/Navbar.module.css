@@ -1,6 +1,7 @@
 .sidebar {
+    
     grid-area: n;
-    background-color: rgb(165, 22, 134);
+    background-color: rgb(190, 190, 190);
   }
 .item{
     color: white;
@@ -12,4 +13,18 @@
 
 .item.disable {
   color:red;
+}
+
+
+
+.bestFriends{
+  width: 120px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.bestFriends img{
+  width: 50px;
 }

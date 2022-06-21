@@ -1,25 +1,14 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import classes from "./Dialogs.module.css";
-
-const ChatItem = (props) => {
-  return (
-    <div>
-      <Link to={props.id} >{props.name}</Link>
-    </div>
-  );
-};
-let chatsData = [
-    { id: "1", name: "radim"},
-    { id: "2", name: "vadim"},
-    { id: "3", name: "eva"},
-    {id:"4", name:"valera"}    
-]
+import ChatItem from "./ChatItem/ChatItem.jsx"
 
 
-let chatitems = chatsData.map((chatsData) => {return(<ChatItem id={chatsData.id} name={chatsData.name} />)})
-const Dialogs = (props) => {
 
+
+
+function Dialogs(props){
+  let chatitems = props.data.map((B) => {return(<ChatItem to={B.id} name={B.name} />)})
   return (
     <div className={classes.dialogs}>
       <div className={classes.contacts}>
