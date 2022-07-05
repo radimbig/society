@@ -1,15 +1,12 @@
 import React from "react";
 import Post from "./Post/Post";
 
-let postsObj = [
-  { likes: 133, text: "ja churka" },
-  { likes: 45, text: "lysa boshka" },
-  { likes: 89, text: "kruchu binance" },
-];
+
 let textArea = React.createRef();
 
 
 function MyPosts(props) {
+  
   function TempPost(){
     let text = textArea.current.value;
     props.TempPost(text);
@@ -23,7 +20,7 @@ function MyPosts(props) {
   let bebra = props.data.map((L) => {
     return <Post likes={L.likes} text={L.text} />;
   });
-
+  
   return (
     <div>
       <textarea onChange={TempPost} value={props.temp} ref={textArea}></textarea>

@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import state, { subscribe } from './redux/state.js'
-import {addPost, TempPost} from './redux/state.js'
+import store from './redux/state.js'
+
 
 
 
@@ -16,15 +16,14 @@ const Main = (state)=>{
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-      <App data={state} TempPost={TempPost}  addPost={addPost} />
+      <App data={state} addPost={store.addPost.bind(store)} tempPost={store.tempPost.bind(store)} />
       </BrowserRouter>
-    
     </React.StrictMode>
   );
 }
-Main(state)
+Main(store.getState())
 
-subscribe(Main)
+store.subscribe(Main)
 
 
 // If you want to start measuring performance in your app, pass a function

@@ -6,6 +6,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
 function Profile(props){
+  
   return (
     <div className={w.content}>
         
