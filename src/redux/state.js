@@ -58,36 +58,21 @@ let store = {
   getState() {
     return this._state;
   },
-  tempPost(a) {
-    console.log("tempPost was called");
-    this._state.profilePage.TempPost = a;
 
-    ReRenderAll(this._state);
-  },
   subscribe(callBack) {
     console.log("subscribed");
     ReRenderAll = callBack;
   },
-  addPost() {
-    console.log("addPost was called");
 
-    let NewPost = {
-      id: this._state.profilePage.postsObj.length + 1,
-      text: this._state.profilePage.TempPost,
-      likes: 0,
-    };
-    this._state.profilePage.postsObj.push(NewPost);
-    this._state.profilePage.TempPost = "";
-    ReRenderAll(this._state);
-  },
   dispatch(action) {
     if (action.type == "ADD-POST") {
       console.log("addPost was called");
 
       let NewPost = {
         id: this._state.profilePage.postsObj.length + 1,
-        text: this._state.profilePage.TempPost,
         likes: 0,
+        text: this._state.profilePage.TempPost
+       
       };
       this._state.profilePage.postsObj.push(NewPost);
       this._state.profilePage.TempPost = "";
