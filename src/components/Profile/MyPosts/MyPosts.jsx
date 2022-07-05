@@ -8,14 +8,21 @@ let textArea = React.createRef();
 function MyPosts(props) {
   
   function TempPost(){
+    let tempObj = {
+      type:"TEMP-POST",
+      text:textArea.current.value
+    }
     let text = textArea.current.value;
-    props.TempPost(text);
+    props.dispatch(tempObj);
   }
 
 
   function addPost() {
-    let text = textArea.current.value;
-    props.addPost(text);
+    let tempObj={
+      type:"ADD-POST"
+    }
+    
+    props.dispatch(tempObj);
   }
   let bebra = props.data.map((L) => {
     return <Post likes={L.likes} text={L.text} />;

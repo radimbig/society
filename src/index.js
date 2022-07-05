@@ -16,7 +16,7 @@ const Main = (state)=>{
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-      <App data={state} addPost={store.addPost.bind(store)} tempPost={store.tempPost.bind(store)} />
+      <App data={state} dispatch={store.dispatch.bind(store)} addPost={store.addPost.bind(store)} tempPost={store.tempPost.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>
   );

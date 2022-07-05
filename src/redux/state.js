@@ -1,7 +1,5 @@
-
-
 let store = {
-  _state:{
+  _state: {
     profilePage: {
       postsObj: [
         { id: 1, likes: 133, text: "ja churka" },
@@ -55,33 +53,54 @@ let store = {
             "https://icon-library.com/images/steam-icon-ico/steam-icon-ico-16.jpg",
         },
       ],
-    }
-
+    },
   },
-  getState(){return(this._state)},
+  getState() {
+    return this._state;
+  },
   tempPost(a) {
-    console.log("tempPost was called")
+    console.log("tempPost was called");
     this._state.profilePage.TempPost = a;
 
     ReRenderAll(this._state);
   },
   subscribe(callBack) {
-    console.log("subscribed")
+    console.log("subscribed");
     ReRenderAll = callBack;
   },
   addPost() {
-    console.log("addPost was called")
+    console.log("addPost was called");
 
     let NewPost = {
-      id: this._state.profilePage.postsObj.length+1,
+      id: this._state.profilePage.postsObj.length + 1,
       text: this._state.profilePage.TempPost,
       likes: 0,
     };
     this._state.profilePage.postsObj.push(NewPost);
     this._state.profilePage.TempPost = "";
     ReRenderAll(this._state);
+  },
+  dispatch(action) {
+    if (action.type == "ADD-POST") {
+      console.log("addPost was called");
+
+      let NewPost = {
+        id: this._state.profilePage.postsObj.length + 1,
+        text: this._state.profilePage.TempPost,
+        likes: 0,
+      };
+      this._state.profilePage.postsObj.push(NewPost);
+      this._state.profilePage.TempPost = "";
+      ReRenderAll(this._state);
+    }
+    if (action.type == "TEMP-POST"){
+      console.log("tempPost was called");
+      this._state.profilePage.TempPost = action.text;
+  
+      ReRenderAll(this._state);
+    }
   }
-}
+};
 
 let state = {
   profilePage: {
@@ -149,7 +168,7 @@ let state = {
     ReRenderAll(state);
   },
   subscribe(callBack) {
-    console.log("subscribed")
+    console.log("subscribed");
     ReRenderAll = callBack;
   },
   TempPost(a) {
@@ -157,9 +176,9 @@ let state = {
 
     ReRenderAll(state);
   },
-  getState(){
-    return(state);
-  }
+  getState() {
+    return state;
+  },
 };
 let ReRenderAll = () => {
   console.log("state changed");

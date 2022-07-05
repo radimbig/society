@@ -12,7 +12,7 @@ function Profile(props){
         
         <ProfileInfo src="https://img00.deviantart.net/ebde/i/2013/087/f/2/mercedes_benz_icon_by_slamiticon-d5z70do.png" text="description" />
         
-      <MyPosts TempPost={props.TempPost} temp={props.temp} addPost={props.addPost} data={props.data}  />
+      <MyPosts  temp={props.temp} dispatch={props.dispatch} data={props.data}  />
     </div>
   );
 };
