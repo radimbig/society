@@ -1,3 +1,17 @@
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogReducer";
+import sidebarReducer from "./sidebarReducer";
+
+
+
+
+const TEMP_POST = "TEMP-POST";
+const ADD_POST = "ADD-POST";
+const TEMP_MESS = "TEMP-MESS"
+const SEND_MESS = "SEND-MESS"
+
+
+
 let store = {
   _state: {
     profilePage: {
@@ -31,6 +45,12 @@ let store = {
             "https://iconarchive.com/download/i48697/custom-icon-design/pretty-office-2/man.ico",
         },
       ],
+      messeages:[
+        {id:1, text:"Hello my name Radim"},
+        {id:2, text:"What`s your name?"},
+        {id:3, text:"my name`s Radim!"}
+      ],
+      temp:"My message"
     },
     sidebar: {
       bestFriends: [
@@ -65,109 +85,54 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type == "ADD-POST") {
-      console.log("addPost was called");
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action)
+    this._state.profilePage = profileReducer(this._state.profilePage,action)
+    this._state.sidebarPage = sidebarReducer(this._state.sidebar, action)
 
-      let NewPost = {
-        id: this._state.profilePage.postsObj.length + 1,
-        likes: 0,
-        text: this._state.profilePage.TempPost
-       
-      };
-      this._state.profilePage.postsObj.push(NewPost);
-      this._state.profilePage.TempPost = "";
-      ReRenderAll(this._state);
-    }
-    if (action.type == "TEMP-POST"){
-      console.log("tempPost was called");
-      this._state.profilePage.TempPost = action.text;
-  
-      ReRenderAll(this._state);
-    }
+    ReRenderAll(this._state);
+    console.log("dispatch was called with type:", action.type);
+
   }
 };
 
-let state = {
-  profilePage: {
-    postsObj: [
-      { id: 1, likes: 133, text: "ja churka" },
-      { id: 2, likes: 45, text: "lysa boshka" },
-      { id: 3, likes: 89, text: "kruchu binance" },
-      { id: 4, likes: 22, text: "bebromentr" },
-    ],
-    TempPost: "Radim",
-  },
-  dialogsPage: {
-    chatsData: [
-      { id: "1", name: "radim", profileLink: "" },
-      {
-        id: "2",
-        name: "vadim",
-        profileLink:
-          "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico",
-      },
-      {
-        id: "3",
-        name: "eva",
-        profileLink:
-          "https://icon-library.com/images/steam-icon-ico/steam-icon-ico-16.jpg",
-      },
-      {
-        id: "4",
-        name: "masha",
-        profileLink:
-          "https://iconarchive.com/download/i48697/custom-icon-design/pretty-office-2/man.ico",
-      },
-    ],
-  },
-  sidebar: {
-    bestFriends: [
-      {
-        id: "2",
-        name: "vadim",
-        profileLink:
-          "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico",
-      },
-      {
-        id: "4",
-        name: "masha",
-        profileLink:
-          "https://iconarchive.com/download/i48697/custom-icon-design/pretty-office-2/man.ico",
-      },
-      {
-        id: "3",
-        name: "eva",
-        profileLink:
-          "https://icon-library.com/images/steam-icon-ico/steam-icon-ico-16.jpg",
-      },
-    ],
-  },
-  addPost(messege) {
-    let NewPost = {
-      id: 5,
-      text: messege,
-      likes: 0,
-    };
-    state.profilePage.postsObj.push(NewPost);
-    state.profilePage.TempPost = "";
-    ReRenderAll(state);
-  },
-  subscribe(callBack) {
-    console.log("subscribed");
-    ReRenderAll = callBack;
-  },
-  TempPost(a) {
-    state.profilePage.TempPost = a;
-
-    ReRenderAll(state);
-  },
-  getState() {
-    return state;
-  },
-};
 let ReRenderAll = () => {
   console.log("state changed");
 };
+export const tempPostActionCreator = (b) => {
+  return {
+    type: TEMP_POST,
+    text: b,
+  };
+};
+
+export const addPostActionCreator = () =>{
+  return({
+    type:ADD_POST
+  })}
+
+
+export const tempMessActionCreator = (value) =>{
+return(
+  {
+    type:TEMP_MESS,
+    text:value
+  }
+)
+}
+
+export const sendMessActionCreator = () =>{
+  return(
+    {
+      type:SEND_MESS
+    }
+  )
+}
+
+
+
+
+
+
 
 window.store = store;
 export default store;

@@ -17,17 +17,18 @@ const App = (props) => {
   return (
       
       <div className="app-wrapper">
+        
         <Header />
         <Navbar data={props.data.sidebar} />
         <Routes>
           <Route path="/" element={<Profile data={props.data.profilePage.postsObj} />} />
           <Route path="/profile"  element={<Profile dispatch={props.dispatch} temp={props.data.profilePage.TempPost} data={props.data.profilePage.postsObj} />} ></Route>
-          <Route path="/dialogs"  element={<Dialogs data={props.data.dialogsPage.chatsData} />} >
-            <Route path="1" element={<div>Chat1</div>} />
+          <Route path="/dialogs"  element={<Dialogs dispatch={props.dispatch} data={props.data.dialogsPage} />} >
+            {/* <Route path="1" element={<div>Chat1</div>} />
             <Route path="2" element={<div>Chat2</div>} />
             <Route path="3" element={<div>Chat3</div>} />
             <Route path="4" element={<div>Chat4</div>} />
-            
+             */}
           </Route>
           <Route path="/news"  element={<News />} ></Route> 
           <Route path="/music"  element={<Music />} ></Route>
