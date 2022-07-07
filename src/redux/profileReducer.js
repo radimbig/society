@@ -3,8 +3,18 @@ const ADD_POST = "ADD-POST";
 const TEMP_MESS = "TEMP-MESS"
 const SEND_MESS = "SEND-MESS"
 
+let initializationState = {
+    postsObj: [
+      { id: 1, likes: 133, text: "ja churka" },
+      { id: 2, likes: 45, text: "lysa boshka" },
+      { id: 3, likes: 89, text: "kruchu binance" },
+      { id: 4, likes: 22, text: "bebromentr" },
+    ],
+    TempPost: "Radim",
+  }
 
-const profileReducer = (state, action) =>{
+const profileReducer = (state = initializationState, action) =>{
+  
     switch(action.type){
         case ADD_POST:
             let NewPost = {

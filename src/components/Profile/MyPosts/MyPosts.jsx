@@ -1,5 +1,5 @@
 import React from "react";
-import { addPostActionCreator, tempPostActionCreator } from "../../../redux/state";
+import { addPostActionCreator, tempPostActionCreator } from "../../../redux/actionCreators";
 import Post from "./Post/Post";
 
 

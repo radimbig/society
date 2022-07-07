@@ -98,36 +98,6 @@ let store = {
 let ReRenderAll = () => {
   console.log("state changed");
 };
-export const tempPostActionCreator = (b) => {
-  return {
-    type: TEMP_POST,
-    text: b,
-  };
-};
-
-export const addPostActionCreator = () =>{
-  return({
-    type:ADD_POST
-  })}
-
-
-export const tempMessActionCreator = (value) =>{
-return(
-  {
-    type:TEMP_MESS,
-    text:value
-  }
-)
-}
-
-export const sendMessActionCreator = () =>{
-  return(
-    {
-      type:SEND_MESS
-    }
-  )
-}
-
 
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { sendMessActionCreator, tempMessActionCreator } from "../../../redux/state";
+import { sendMessActionCreator, tempMessActionCreator } from "../../../redux/actionCreators";
 import classes from "./ChatWindow.module.css"
 
 
