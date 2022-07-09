@@ -1,5 +1,5 @@
 import React from "react";
-import { sendMessActionCreator, tempMessActionCreator } from "../../../redux/actionCreators";
+
 import classes from "./ChatWindow.module.css"
 
 
@@ -8,18 +8,18 @@ const ChatWindow = (props) => {
     const onChange = (e) =>{
         let text = e.target.value;
         
-        props.dispatch(tempMessActionCreator(text))
+        props.onChange(text)
     }
     const send = () =>{
         
-        props.dispatch(sendMessActionCreator())
+        props.sendMess()
     }
     
-    let messeages = props.data.messeages.map((b)=>{return(<div className={classes.item}>{b.text}</div>)})
+    let messeages = props.messages.map((b)=>{return(<div key={b.id} className={classes.item}>{b.text}</div>)})
     return(
         <div className={classes.root}>
             {messeages}
-            <textarea onChange={onChange} value={props.data.temp}></textarea>
+            <textarea onChange={onChange} value={props.temp}></textarea>
             <button onClick={send}>Send!</button>
         </div>
     )

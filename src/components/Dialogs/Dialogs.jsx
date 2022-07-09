@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import classes from "./Dialogs.module.css";
 import ChatItem from "./ChatItem/ChatItem.jsx"
 import ChatWindow from "./ChatWindow/ChatWindow";
@@ -8,14 +8,14 @@ import ChatWindow from "./ChatWindow/ChatWindow";
 
 
 function Dialogs(props){
-  let chatitems = props.data.chatsData.map((B) => {return(<ChatItem to={""} name={B.name} />)})
+  let chatitems = props.chats.map((B) => {return(<ChatItem to={""} key={B.id} name={B.name} />)})
   return (
     <div className={classes.dialogs}>
       <div className={classes.contacts}>
         {chatitems}
         
       </div>
-      <ChatWindow dispatch={props.dispatch} data={props.data} />
+      <ChatWindow temp={props.temp} onChange={props.onChange} sendMess={props.sendMess} messages={props.messages} />
       
       <Outlet />
     </div>

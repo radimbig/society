@@ -1,5 +1,4 @@
-const TEMP_POST = "TEMP-POST";
-const ADD_POST = "ADD-POST";
+
 const TEMP_MESS = "TEMP-MESS"
 const SEND_MESS = "SEND-MESS"
 
@@ -34,19 +33,21 @@ let initializationState ={
   }
 
  const dialogsReduser = (state = initializationState, action) =>{
-  
+  let tempState = {...state}
+  tempState.messeages = [...state.messeages]
     switch(action.type){
         case TEMP_MESS:
-            state.temp = action.text;
-            return state;
+          
+            tempState.temp = action.text;
+            return tempState;
         case SEND_MESS:
             let newMess = {
-                id:state.messeages.length+1,
-                text:state.temp
+                id:tempState.messeages.length+1,
+                text:tempState.temp
               }
-              state.messeages.push(newMess)
-              state.temp = ""
-              return state
+              tempState.messeages.push(newMess)
+              tempState.temp = ""
+              return tempState
         default: return state      
     }
 

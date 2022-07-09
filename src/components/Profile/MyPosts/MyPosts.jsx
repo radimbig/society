@@ -1,5 +1,5 @@
 import React from "react";
-import { addPostActionCreator, tempPostActionCreator } from "../../../redux/actionCreators";
+
 import Post from "./Post/Post";
 
 
@@ -11,24 +11,24 @@ function MyPosts(props) {
   function TempPost(){
     let text = textArea.current.value;
     
-    props.dispatch(tempPostActionCreator(text));
+    props.tempPost(text)
   }
 
 
   function addPost() {
 
     
-    props.dispatch(addPostActionCreator());
+    props.addPost();
   }
-  let bebra = props.data.map((L) => {
-    return <Post likes={L.likes} text={L.text} />;
+  let bebra = props.posts.map((L) => {
+    return <Post key={L.id} likes={L.likes} text={L.text} />;
   });
   
   return (
     <div>
       <textarea onChange={TempPost} value={props.temp} ref={textArea}></textarea>
       <div>
-        <button onClick={addPost}>Add post {props.data[2].color} </button>
+        <button onClick={addPost}>Add post  </button>
       </div>
       {bebra}
     </div>

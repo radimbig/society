@@ -1,7 +1,6 @@
 const TEMP_POST = "TEMP-POST";
 const ADD_POST = "ADD-POST";
-const TEMP_MESS = "TEMP-MESS"
-const SEND_MESS = "SEND-MESS"
+
 
 let initializationState = {
     postsObj: [
@@ -10,24 +9,25 @@ let initializationState = {
       { id: 3, likes: 89, text: "kruchu binance" },
       { id: 4, likes: 22, text: "bebromentr" },
     ],
-    TempPost: "Radim",
+    tempPost: "Radim",
   }
 
 const profileReducer = (state = initializationState, action) =>{
-  
+  let tempState = {...state}
+  tempState.postsObj = [...state.postsObj]
     switch(action.type){
         case ADD_POST:
             let NewPost = {
-                id: state.postsObj.length + 1,
+                id: tempState.postsObj.length + 1,
                 likes: 0,
-                text: state.TempPost,
+                text: tempState.tempPost,
               };
-              state.postsObj.push(NewPost);
-              state.TempPost = "";
-              return state
+              tempState.postsObj.push(NewPost);
+              tempState.tempPost = "";
+              return tempState
         case TEMP_POST:
-            state.TempPost = action.text;
-            return state
+            tempState.tempPost = action.text;
+            return tempState
         default: 
               return state
 

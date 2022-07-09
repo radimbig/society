@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import classes from "./ChatItem.module.css";
+import { Link} from "react-router-dom";
+
 
 const ChatItem = (props) => {
   return (

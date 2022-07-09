@@ -4,13 +4,12 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {Routes, Route } from "react-router-dom";
-import Dialogs from "./components/Dialogs/Dialogs";
+
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-
-
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = (props) => {
  
@@ -21,9 +20,9 @@ const App = (props) => {
         <Header />
         <Navbar data={props.data.sidebarPage} />
         <Routes>
-          <Route path="/" element={<Profile data={props.data.profilePage.postsObj} />} />
-          <Route path="/profile"  element={<Profile dispatch={props.dispatch} temp={props.data.profilePage.TempPost} data={props.data.profilePage.postsObj} />} ></Route>
-          <Route path="/dialogs"  element={<Dialogs dispatch={props.dispatch} data={props.data.dialogsPage} />} >
+          <Route path="/" element={<Profile dispatch={props.dispatch} store={props.store} />} />
+          <Route path="/profile"  element={<Profile dispatch={props.dispatch} store={props.store} />} ></Route>
+          <Route path="/dialogs"  element={<DialogsContainer dispatch={props.dispatch} store={props.store} />} >
             <Route path="1" element={<div></div>} />
             <Route path="2" element={<div></div>} />
             <Route path="3" element={<div></div>} />
