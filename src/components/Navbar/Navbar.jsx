@@ -20,6 +20,9 @@ const Navbar = (props) => {
       <div>
         <Link to="settings">Settings</Link>
       </div>
+      <div>
+        <Link to="users">All users</Link>
+      </div>
       <div className={classes.bestFriends}>
         <div className={classes.friend1}>
           <Link to={"dialogs/" + props.data.bestFriends[0].id}>
