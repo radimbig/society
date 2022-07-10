@@ -9,7 +9,7 @@ const UsersPage = (props)=>{
         let tempCallBack;
         
         let userImg
-        if(M.sex == true){
+        if(M.sex === true){
              userImg = "https://cdn-icons-png.flaticon.com/512/219/219986.png"
         }
         else{
