@@ -23,13 +23,13 @@
     padding: 10px;
 }
 
-button{
+.button{
     height: 37px;
     width: 80px;
     margin-left: 35%;
 }
 
-.main img{
+.img{
     border-radius:100%;
     width: 35px;
     height: 35px;

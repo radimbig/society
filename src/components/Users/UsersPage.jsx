@@ -29,13 +29,13 @@ const UsersPage = (props)=>{
         return(
             <div key={M.id} className={styles.user}>
                 <div className={styles.first} >
-                <img src={userImg} alt="something wrong..." />
+                <img className={styles.img} src={userImg} alt="something wrong..." />
                 {M.name}  from {M.location.city} has {M.age} age
                 </div>
                 <div className={styles.second} >
                     bio:{M.bio}
                 </div>
-                <button onClick={tempCallBack} >{temp}</button>
+                <button className={styles.button} onClick={tempCallBack} >{temp}</button>
             </div>
         )
     })
