@@ -19,8 +19,9 @@ import { connect } from "react-redux/es/exports";
             
             dispatch(unfollowActionCreator(b))
         },
-            setUsers:()=>{
-                dispatch(setUsersActionCreator())
+            setUsers:(users)=>{
+              
+                dispatch(setUsersActionCreator(users))
             }
       })
   
