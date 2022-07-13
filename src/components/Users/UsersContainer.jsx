@@ -4,7 +4,7 @@ import {
     setUsersActionCreator,
     unfollowActionCreator,
   } from "../../redux/actionCreators";
-import UsersPage from "./UsersPage";
+import Users from "./Users.jsx";
 import { connect } from "react-redux/es/exports";
   
   
@@ -26,7 +26,7 @@ import { connect } from "react-redux/es/exports";
       })
   
   }
-  const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersPage)
+  const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
   
   
   

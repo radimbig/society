@@ -5,6 +5,7 @@ const SEND_MESS = "SEND-MESS"
 const UNFOLLOW = "UNFOLLOW"
 const FOLLOW = "FOLLOW"
 const SET_USERS = "SET_USERS"
+const ADD_USERS = "ADD_USERS"
 
 export const tempPostActionCreator = (b) => {
     return {
@@ -56,6 +57,12 @@ export const unfollowActionCreator = (id) =>{
 export const setUsersActionCreator = (users) =>{
   return({
     type:SET_USERS,
+    users
+  })
+}
+export const addUsersActionCreator = (users) =>{
+  return({
+    type:ADD_USERS,
     users
   })
 }

@@ -1,6 +1,7 @@
 const UNFOLLOW = "UNFOLLOW";
 const FOLLOW = "FOLLOW";
 const SET_USERS = "SET_USERS";
+const ADD_USERS = "ADD_USERS"
 
 let initState = {
   users: [
@@ -42,7 +43,7 @@ const usersReduser = (state = initState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, followed: true };
+            return { ...u, followed: 1 };
           }
           return u;
         }),
@@ -52,7 +53,7 @@ const usersReduser = (state = initState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, followed: false };
+            return { ...u, followed: 0 };
           }
           return u;
         }),
@@ -62,6 +63,11 @@ const usersReduser = (state = initState, action) => {
         ...state,
         users: [...action.users],
       };
+    case ADD_USERS:
+      return{
+        ...state,
+        users:[...state.users, ...action.users]
+      }
     default:
       return state;
   }
