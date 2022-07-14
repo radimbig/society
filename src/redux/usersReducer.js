@@ -2,6 +2,9 @@ const UNFOLLOW = "UNFOLLOW";
 const FOLLOW = "FOLLOW";
 const SET_USERS = "SET_USERS";
 const ADD_USERS = "ADD_USERS"
+const SET_PAGE = "SET_PAGE"
+const SET_PAGES_COUNT = "SET_PAGES_COUNT"
+const SET_COUNT = "SET_COUNT"
 
 let initState = {
   users: [
@@ -34,6 +37,11 @@ let initState = {
     //   location: { city: "Russia", country: "Moscow", profileImg: "" },
     // },
   ],
+  
+  pagesCount:3,
+  currentPage:1,
+  usersPerPage:2,
+  usersCount:5
 };
 
 const usersReduser = (state = initState, action) => {
@@ -67,6 +75,21 @@ const usersReduser = (state = initState, action) => {
       return{
         ...state,
         users:[...state.users, ...action.users]
+      }
+    case SET_PAGE:
+      return{
+        ...state,
+        currentPage:action.number
+      }
+    case SET_PAGES_COUNT:
+      return{
+        ...state,
+        pagesCount:action.number
+      }
+    case SET_COUNT:
+      return{
+        ...state,
+        usersCount:action.number
       }
     default:
       return state;

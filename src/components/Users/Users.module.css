@@ -21,6 +21,7 @@
 .second{
     background-color: rgb(224, 117, 171);
     padding: 10px;
+    text-align: center;
 }
 
 .button{
@@ -33,4 +34,15 @@
     border-radius:100%;
     width: 35px;
     height: 35px;
+}
+
+.selected{
+    color: rgb(8, 233, 20);
+    
+    font-size: large;
+}
+
+.unselected{
+    color:black;
+    font-size: medium;
 }

@@ -6,7 +6,9 @@ const UNFOLLOW = "UNFOLLOW"
 const FOLLOW = "FOLLOW"
 const SET_USERS = "SET_USERS"
 const ADD_USERS = "ADD_USERS"
-
+const SET_PAGE = "SET_PAGE"
+const SET_PAGES_COUNT = "SET_PAGES_COUNT"
+const SET_COUNT = "SET_COUNT"
 export const tempPostActionCreator = (b) => {
     return {
       type: TEMP_POST,
@@ -64,5 +66,27 @@ export const addUsersActionCreator = (users) =>{
   return({
     type:ADD_USERS,
     users
+  })
+}
+
+export const setPageActionCreator = (number) =>{
+  return({
+    type:SET_PAGE,
+    number
+  })
+}
+
+export const setPagesCountActionCreator = (number) =>{
+  return(
+    {
+      type:SET_PAGES_COUNT,
+      number
+    }
+  )
+}
+export const setCountActionCreator = (number) =>{
+  return({
+    type:SET_COUNT,
+    number
   })
 }
