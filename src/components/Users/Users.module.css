@@ -38,11 +38,12 @@
 
 .selected{
     color: rgb(8, 233, 20);
-    
+    cursor: pointer;
     font-size: large;
 }
 
 .unselected{
     color:black;
     font-size: medium;
+    cursor: pointer;
 }

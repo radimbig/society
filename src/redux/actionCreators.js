@@ -9,6 +9,7 @@ const ADD_USERS = "ADD_USERS"
 const SET_PAGE = "SET_PAGE"
 const SET_PAGES_COUNT = "SET_PAGES_COUNT"
 const SET_COUNT = "SET_COUNT"
+const SET_FETCH = "SET_FETCH"
 export const tempPostActionCreator = (b) => {
     return {
       type: TEMP_POST,
@@ -88,5 +89,12 @@ export const setCountActionCreator = (number) =>{
   return({
     type:SET_COUNT,
     number
+  })
+}
+
+export const setFetchActionCreator = (value) =>{
+  return({
+    type:SET_FETCH,
+    value
   })
 }
