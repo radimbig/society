@@ -4,6 +4,7 @@ import styles from "./Users.module.css";
 import loader from "../../assets/preloader/loading.gif"
 import avaF from "../../assets/icoF/avaF.png"
 import avaM from "../../assets/icoM/avaM.png"
+import { Link, Outlet } from "react-router-dom";
 // let avaF = "https://cdn-icons-png.flaticon.com/512/219/219969.png";
 // let avaM = "https://cdn-icons-png.flaticon.com/512/219/219986.png";
 
@@ -48,11 +49,13 @@ const Users = (props) => {
 
       <div key={M.id} className={styles.user}>
         <div className={styles.first}>
+          <Link to={"/profile/"+ M.id}>
           <img
             className={styles.img}
             src={userImg}
             alt="something wrong..."
           />
+          </Link>
           {M.name} from {M.city} has {M.age} age
         </div>
         <div className={styles.second}>{M.bio}</div>
@@ -80,6 +83,7 @@ else{
       })}
     </div>
     {users}
+    <Outlet />
   </div>)
 }
 

@@ -11,6 +11,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Error from "./components/common/Error/Error";
 
 const App = (props) => {
  
@@ -22,7 +23,7 @@ const App = (props) => {
         <Navbar data={props.data.sidebarPage} />
         <Routes>
           <Route path="/" element={<Profile dispatch={props.dispatch} store={props.store} />} />
-          <Route path="/profile"  element={<Profile dispatch={props.dispatch} store={props.store} />} ></Route>
+          <Route path="/profile/*"   element={<Profile dispatch={props.dispatch} store={props.store} />} ></Route>
           <Route path="/dialogs"  element={<DialogsContainer  />} >
             <Route path="1" element={<div></div>} />
             <Route path="2" element={<div></div>} />
@@ -30,7 +31,7 @@ const App = (props) => {
             <Route path="4" element={<div></div>} />
             
           </Route>
-            
+          <Route path="*" element={<Error text="ERROR 404 page not found" />} ></Route>
           <Route path="/news"  element={<News />} ></Route> 
           <Route path="/users"  element={<UsersContainer />} ></Route> 
           <Route path="/music"  element={<Music />} ></Route>
