@@ -6,7 +6,7 @@ const Navbar = (props) => {
   return (
     <nav className={classes.sidebar}>
       <div>
-        <Link to="profile">Profile</Link>
+        <Link to="profile">My profile</Link>
       </div>
       <div>
         <Link to="dialogs">Messages</Link>
