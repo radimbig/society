@@ -1,7 +1,9 @@
-const TEMP_POST = "TEMP-POST";
-const ADD_POST = "ADD-POST";
-const TEMP_MESS = "TEMP-MESS"
-const SEND_MESS = "SEND-MESS"
+const TEMP_POST = "TEMP_POST";
+const ADD_POST = "ADD_POST";
+const SET_PROFILE ="SET_PROFILE"
+
+const TEMP_MESS = "TEMP_MESS"
+const SEND_MESS = "SEND_MESS"
 const UNFOLLOW = "UNFOLLOW"
 const FOLLOW = "FOLLOW"
 const SET_USERS = "SET_USERS"
@@ -10,6 +12,9 @@ const SET_PAGE = "SET_PAGE"
 const SET_PAGES_COUNT = "SET_PAGES_COUNT"
 const SET_COUNT = "SET_COUNT"
 const SET_FETCH = "SET_FETCH"
+
+
+
 export const tempPostActionCreator = (b) => {
     return {
       type: TEMP_POST,
@@ -97,4 +102,12 @@ export const setFetchActionCreator = (value) =>{
     type:SET_FETCH,
     value
   })
+}
+
+export const setProfileActionCreator = (profile) =>{
+  return({
+    type:SET_PROFILE,
+    profile
+  })
+
 }

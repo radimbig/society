@@ -1,5 +1,5 @@
-const TEMP_MESS = "TEMP-MESS";
-const SEND_MESS = "SEND-MESS";
+const TEMP_MESS = "TEMP_MESS"
+const SEND_MESS = "SEND_MESS"
 
 let initializationState = {
   chatsData: [

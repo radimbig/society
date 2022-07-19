@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Routes, Route } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 
@@ -13,17 +13,18 @@ import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Error from "./components/common/Error/Error";
 
+
 const App = (props) => {
  
   return (
       
       <div className="app-wrapper">
-        
+       
         <Header />
         <Navbar data={props.data.sidebarPage} />
         <Routes>
-          <Route path="/" element={<Profile dispatch={props.dispatch} store={props.store} />} />
-          <Route path="/profile/*"   element={<Profile dispatch={props.dispatch} store={props.store} />} ></Route>
+          <Route path="/" element={<ProfileContainer dispatch={props.dispatch} store={props.store} />} />
+          <Route path="/profile/*"   element={<ProfileContainer dispatch={props.dispatch} store={props.store} />} ></Route>
           <Route path="/dialogs"  element={<DialogsContainer  />} >
             <Route path="1" element={<div></div>} />
             <Route path="2" element={<div></div>} />

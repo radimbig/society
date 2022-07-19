@@ -1,12 +1,15 @@
 import React from "react";
 import styles from "./Users.module.css";
 
-import loader from "../../assets/preloader/loading.gif"
+
 import avaF from "../../assets/icoF/avaF.png"
 import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
+import Loader from "../common/Loader/Loader";
 // let avaF = "https://cdn-icons-png.flaticon.com/512/219/219969.png";
 // let avaM = "https://cdn-icons-png.flaticon.com/512/219/219986.png";
+
+
 
 
 const Users = (props) => {
@@ -67,7 +70,7 @@ const Users = (props) => {
   });
 
 if(props.isFetching === true){
-  return(<img alt="loading..." src={loader} />)
+  return(<Loader />)
 }
 else{
   return (<div className={styles.main}>
