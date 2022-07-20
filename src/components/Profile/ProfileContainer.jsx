@@ -33,8 +33,8 @@ function withRouter(Component) {
 
 class ProfileClass extends React.Component {
   componentDidMount() {
-      console.log(this.props.router.params)
-      axios.get(`http://server.fsvsgroup.com:1880/profile?id=${this.props.router.params[Object.keys(this.props.router.params)[0]]}`).then(
+      
+      axios.get(`http://server.fsvsgroup.com:1880/profile?id=${this.props.router.params.id}`).then(
         (res)=>{
           
           this.props.setProfile(res.data.user)
