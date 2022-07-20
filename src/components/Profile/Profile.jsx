@@ -8,6 +8,7 @@ import instagram from "../../assets/socials/instagram.png"
 
 
 const Profile = (props) =>{
+
     let links = []
     let picture
     if(props.user.instagram !== null && props.user.instagram !== ""){
@@ -24,7 +25,7 @@ const Profile = (props) =>{
         picture = props.user.image
     }
     else{
-        debugger
+        
         if(parseInt(props.user.sex) === 0){
             picture = icoF
         }else{

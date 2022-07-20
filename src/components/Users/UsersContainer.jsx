@@ -12,7 +12,9 @@ import {
 import { connect } from "react-redux/es/exports";
 import axios from "axios";
 import PureUsers from "./Users";
-  
+
+
+
   
   const mapStateToProps = (state) => ({
     users:state.usersPage.users,
@@ -58,6 +60,7 @@ import PureUsers from "./Users";
 
   class UsersAPI extends React.Component {
     componentDidMount() {
+
       if (this.props.users.length === 0) {
         this.props.setFetch(true)
         axios.get(`http://server.fsvsgroup.com:1880/user?page=${this.props.currentPage}&count=${this.props.usersPerPage}`).then((res) => {
@@ -76,8 +79,8 @@ import PureUsers from "./Users";
     }
     setPage = (number) =>{
      this.props.setFetch(true)
-    this.props.setPage(number)
-    axios.get(`http://server.fsvsgroup.com:1880/user?page=${number}&count=${this.props.usersPerPage}`).then((res) => {
+    this.props.setPage(parseInt(number))
+    axios.get(`http://server.fsvsgroup.com:1880/user?page=${parseInt(number)}&count=${this.props.usersPerPage}`).then((res) => {
       
       this.props.setUsers(res.data)
       this.props.setFetch(false)

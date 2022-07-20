@@ -1,6 +1,7 @@
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
+
 let initializationState = {
   currentProfile:{
     id:"1",
@@ -23,6 +24,7 @@ let initializationState = {
     { id: 4, likes: 22, text: "bebromentr" },
   ],
   tempPost: "Radim",
+  isFetching:true
 };
 
 const profileReducer = (state = initializationState, action) => {
@@ -50,6 +52,7 @@ const profileReducer = (state = initializationState, action) => {
         ...state,
         currentProfile:{...action.profile}
       }
+
     default:
       return state;
   }

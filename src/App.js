@@ -34,7 +34,7 @@ const App = (props) => {
           </Route>
           <Route path="*" element={<Error text="ERROR 404 page not found" />} ></Route>
           <Route path="/news"  element={<News />} ></Route> 
-          <Route path="/users"  element={<UsersContainer />} ></Route> 
+          <Route path="/users/*"  element={<UsersContainer />} ></Route> 
           <Route path="/music"  element={<Music />} ></Route>
           <Route path="/settings"  element={<Settings />} ></Route>
         </Routes>
