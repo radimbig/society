@@ -43,6 +43,16 @@ class ProfileClass extends React.Component {
   }
 
   render() {
+    if(this.props.router.params.id === undefined){
+      axios.get(`http://server.fsvsgroup.com:1880/profile?id=1`).then(
+        (res)=>{
+          
+          this.props.setProfile(res.data.user)
+        }
+      )
+    }
+
+
     if(this.props.profile.name === undefined){
       return(<Error text="Profile Not Found" />)
     }else{
