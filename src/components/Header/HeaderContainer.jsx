@@ -1,20 +1,21 @@
 import React from "react";
-import classes from "./Header.module.css";
+
 import { connect } from 'react-redux/es/exports';
-import logos from "../../assets/logo/logo.png"
+
 import { setUserDataActionCreator, setUserPictureActionCreator } from '../../redux/actionCreators';
-import axios from "axios";
+
 import Header from "./Header";
+import { authAPI, profileAPI } from "../../api/api";
 class HeaderClass extends React.Component{
 
   componentDidMount(){
-      axios.get("https://social-network.samuraijs.com/api/1.0/auth/me", {withCredentials:true}).then((res)=>{
+     authAPI.authMe().then((data)=>{
       
-        if(res.data.resultCode === 0){
+        if(data.resultCode === 0){
           
-          this.props.setUserData(res.data)
+          this.props.setUserData(data)
           
-          this.setUserPicture(res.data.data.id)
+          this.setUserPicture(data.data.id)
         }
       
           
@@ -23,9 +24,9 @@ class HeaderClass extends React.Component{
       })
   }
   setUserPicture = (id)=>{
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`).then(res=>{
-      if(res.data.photos.small !== null){
-        this.props.setUserPicture(res.data.photos.small)
+    profileAPI.getProfile(id).then(data=>{
+      if(data.photos.small !== null){
+        this.props.setUserPicture(data.photos.small)
       }else{
         this.props.setUserPicture("default")
       }

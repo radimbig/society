@@ -11,9 +11,9 @@ import {
   } from "../../redux/actionCreators";
 
 import { connect } from "react-redux/es/exports";
-import axios from "axios";
-import PureUsers from "./Users";
 
+import PureUsers from "./Users";
+import { userAPI } from "../../api/api";
 
 
   
@@ -70,9 +70,9 @@ import PureUsers from "./Users";
 
       if (this.props.users.length === 0) {
         this.props.setFetch(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`,{withCredentials:true}).then((res) => {
-          this.props.setUsers(res.data.items);
-          let temp = res.data.totalCount;
+        userAPI.getUser(this.props.currentPage,this.props.usersPerPage).then((data) => {
+          this.props.setUsers(data.items);
+          let temp = data.totalCount;
           this.props.setCount(temp)
           
           let pagesCount = Math.ceil(temp/this.props.usersPerPage);
@@ -86,9 +86,9 @@ import PureUsers from "./Users";
     setPage = (number=this.props.temp) =>{
      this.props.setFetch(true)
     this.props.setPage(parseInt(number))
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${parseInt(number)}&count=${this.props.usersPerPage}`).then((res) => {
+    userAPI.getUser(number, this.props.usersPerPage).then((data) => {
       
-      this.props.setUsers(res.data.items)
+      this.props.setUsers(data.items)
       this.props.setFetch(false)
     });
     }

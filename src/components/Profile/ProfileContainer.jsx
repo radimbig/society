@@ -5,13 +5,14 @@ import Profile from "./Profile";
 import SuperMyPosts from "./MyPosts/MyPostsContainer";
 import { connect } from "react-redux";
 import { setProfileActionCreator } from '../../redux/actionCreators';
-import axios from "axios";
+
 import Error from "../common/Error/Error";
 import {
   useLocation,
   useNavigate,
   useParams,
 } from "react-router-dom";
+import { profileAPI } from "../../api/api";
 
 
 function withRouter(Component) {
@@ -34,17 +35,15 @@ function withRouter(Component) {
 class ProfileClass extends React.Component {
   componentDidMount() {
     if(this.props.router.params.id === undefined & this.props.router.params.id ===""){
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(
-        (res)=>{
-          
-          this.props.setProfile(res.data)
+      profileAPI.getProfile(2).then(
+        (data)=>{
+          this.props.setProfile(data)
         }
       )
     }else{
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.router.params.id}`).then(
-        (res)=>{
-          
-          this.props.setProfile(res.data)
+      profileAPI.getProfile(this.props.router.params.id).then(
+        (data)=>{
+          this.props.setProfile(data)
         }
       )
     }
@@ -52,11 +51,11 @@ class ProfileClass extends React.Component {
   }
 
   render() {
+    
     if(this.props.router.params.id === undefined){
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/24856`).then(
-        (res)=>{
-          
-          this.props.setProfile(res.data)
+      profileAPI.getProfile(24856).then(
+        (data)=>{
+          this.props.setProfile(data)
         }
       )
     }

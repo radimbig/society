@@ -54,7 +54,7 @@ const usersReduser = (state = initState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, followed: 1 };
+            return { ...u, followed: true };
           }
           return u;
         }),
@@ -64,7 +64,7 @@ const usersReduser = (state = initState, action) => {
         ...state,
         users: state.users.map((u) => {
           if (u.id === action.userId) {
-            return { ...u, followed: 0 };
+            return { ...u, followed: false };
           }
           return u;
         }),
