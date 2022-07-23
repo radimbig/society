@@ -5,37 +5,7 @@ import axios from 'axios';
 let avaF = "https://cdn-icons-png.flaticon.com/512/219/219969.png"
 let avaM = "https://cdn-icons-png.flaticon.com/512/219/219986.png"
 
-// let tempUser = [
-//   {
-//     id: 1,
-//     followed: true,
-//     sex: true,
-//     name: "Radim",
-//     age: 17,
-//     bio: "I like react",
-//     location: { city: "Ukraine", country: "Poltava" },
-//     profileImg: "",
-//   },
-//   {
-//     id: 2,
-//     followed: false,
-//     sex: true,
-//     name: "Vadim",
-//     age: 45,
-//     bio: "I like c#",
-//     location: { city: "Ukraine", country: "Poltava", profileImg: "" },
-//   },
-//   {
-//     id: 3,
-//     followed: true,
-//     sex: false,
-//     name: "Eva",
-//     age: 25,
-//     bio: "i`m so pretty!",
-//     location: { city: "Russia", country: "Moscow", profileImg: "" },
-//   },
-// ];
-// let persons;
+
 let users
 
 let link = `http://server.fsvsgroup.com:1880/user`
@@ -95,7 +65,8 @@ if(props.users.length !==0)
 
   return(
     <div className={styles.main}>
-      <button onClick={getUser}>Get users</button>
+    
+      <button onClick={getUser}>Get users</button> 
       {users}
     </div>
   )

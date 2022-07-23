@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Routes, Route } from "react-router-dom";
@@ -20,7 +20,7 @@ const App = (props) => {
       
       <div className="app-wrapper">
        
-        <Header />
+        <HeaderContainer />
         <Navbar data={props.data.sidebarPage} />
         <Routes>
           <Route path="/" element={<ProfileContainer  />} />

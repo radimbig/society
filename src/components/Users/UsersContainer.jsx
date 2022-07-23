@@ -5,6 +5,7 @@ import {
     setFetchActionCreator,
     setPageActionCreator,
     setPagesCountActionCreator,
+    setTempPageActionCreator,
     setUsersActionCreator,
     unfollowActionCreator,
   } from "../../redux/actionCreators";
@@ -17,24 +18,30 @@ import PureUsers from "./Users";
 
   
   const mapStateToProps = (state) => ({
+    temp:state.usersPage.temp,
     users:state.usersPage.users,
     currentPage:state.usersPage.currentPage,
     usersPerPage:state.usersPage.usersPerPage,
     usersCount: state.usersPage.usersCount,
     pagesCount:state.usersPage.pagesCount,
-    isFetching:state.usersPage.isFetching
+    isFetching:state.usersPage.isFetching,
+    isLogin:state.authReduser.isLogin
   })
   let mapDispatchToProps = (dispatch) =>{
       return({
+        
+        onchange:(a) =>{
+          dispatch(setTempPageActionCreator(a))
+        },
           follow:(a) => {
-            
+
             dispatch(followActionCreator(a))
-            axios.get(`http://server.fsvsgroup.com:1880/update?value=1&id=${parseInt(a)}`)
+            
         },
           unfollow:(b) => {
             
             dispatch(unfollowActionCreator(b))
-            axios.get(`http://server.fsvsgroup.com:1880/update?value=1&id=${parseInt(b)}`)
+            
 
         },
             setFetch:(value)=>{
@@ -63,26 +70,25 @@ import PureUsers from "./Users";
 
       if (this.props.users.length === 0) {
         this.props.setFetch(true)
-        axios.get(`http://server.fsvsgroup.com:1880/user?page=${this.props.currentPage}&count=${this.props.usersPerPage}`).then((res) => {
-          this.props.setUsers(res.data);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`,{withCredentials:true}).then((res) => {
+          this.props.setUsers(res.data.items);
+          let temp = res.data.totalCount;
+          this.props.setCount(temp)
+          
+          let pagesCount = Math.ceil(temp/this.props.usersPerPage);
+          this.props.setPagesCount(pagesCount)
           
         });
       }
-      axios.get("http://server.fsvsgroup.com:1880/count").then((res)=>{
-        let temp = res.data[0].usersCount;
-        this.props.setCount(temp)
-        
-        let pagesCount = Math.ceil(temp/this.props.usersPerPage);
-        this.props.setPagesCount(pagesCount)
-      })
+ 
       this.props.setFetch(false)
     }
-    setPage = (number) =>{
+    setPage = (number=this.props.temp) =>{
      this.props.setFetch(true)
     this.props.setPage(parseInt(number))
-    axios.get(`http://server.fsvsgroup.com:1880/user?page=${parseInt(number)}&count=${this.props.usersPerPage}`).then((res) => {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${parseInt(number)}&count=${this.props.usersPerPage}`).then((res) => {
       
-      this.props.setUsers(res.data)
+      this.props.setUsers(res.data.items)
       this.props.setFetch(false)
     });
     }
@@ -90,6 +96,9 @@ import PureUsers from "./Users";
       
       
       <PureUsers 
+
+      onChange={this.props.onchange}
+      temp={this.props.temp}
       isFetching={this.props.isFetching}
       setPage={this.setPage}
       users={this.props.users}
@@ -97,6 +106,9 @@ import PureUsers from "./Users";
       pagesCount={this.props.pagesCount}
       unfollow={this.props.unfollow}
       follow={this.props.follow}  
+      usersCount={this.props.usersCount}
+      isLogin={this.props.isLogin}
+
       />
     )}
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Profile.module.css"
 import icoM from "../../assets/icoM/avaM.png"
-import icoF from "../../assets/icoF/avaF.png"
+
 import facebook from "../../assets/socials/facebook.png"
 import github from "../../assets/socials/github.png"
 import instagram from "../../assets/socials/instagram.png"
@@ -11,26 +11,21 @@ const Profile = (props) =>{
 
     let links = []
     let picture
-    if(props.user.instagram !== null && props.user.instagram !== ""){
-        links.push(<a href={props.user.instagram}><img className={styles.social} alt="Logo of instagram" src={instagram} /></a>)
+    if(props.user.contacts.instagram !== null && props.user.instagram !== ""){
+        links.push(<a href={props.user.contacts.instagram}><img className={styles.social} alt="Logo of instagram" src={instagram} /></a>)
     }
-    if(props.user.github !== null && props.user.github !== ""){
-        links.push(<a href={props.user.github}><img className={styles.social} alt="Logo of instagram" src={github} /></a>)
+    if(props.user.contacts.github !== null && props.user.github !== ""){
+        links.push(<a href={props.user.contacts.github}><img className={styles.social} alt="Logo of instagram" src={github} /></a>)
     }
-    if(props.user.facebook !== null && props.user.facebook !== ""){
-        links.push(<a href={props.user.facebook}><img className={styles.social} alt="Logo of instagram" src={facebook} /></a>)
+    if(props.user.contacts.facebook !== null && props.user.facebook !== ""){
+        links.push(<a href={props.user.contacts.facebook}><img className={styles.social} alt="Logo of instagram" src={facebook} /></a>)
     }
 
-    if(props.user.image !== null && props.user.image !== ""){
-        picture = props.user.image
+    if(props.user.photos.large !== null ){
+        picture = props.user.photos.large
     }
     else{
-        
-        if(parseInt(props.user.sex) === 0){
-            picture = icoF
-        }else{
-            picture = icoM
-        }
+        picture = icoM
     }
 
     return(
@@ -39,11 +34,11 @@ const Profile = (props) =>{
                 <img  alt="user img" src={picture} />
             </div>
             <div>
-            {props.user.name}  {props.user.surname}, {props.user.age} years old <br />
+            {props.user.fullName}<br />
            
-            {"About job: " + props.user.job} <br />
-            {"bio: " + props.user.bio} <br />
-            {"From " + props.user.country}<br />
+            {"About job: " + props.user.lookingForAJob} <br />
+            {"bio: " + props.user.aboutMe} <br />
+            
             <div className={styles.secondParent}>
                 {links}
             </div>

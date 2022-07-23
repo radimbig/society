@@ -6,6 +6,7 @@ const SET_PAGE = "SET_PAGE"
 const SET_PAGES_COUNT = "SET_PAGES_COUNT"
 const SET_COUNT = "SET_COUNT"
 const SET_FETCH = "SET_FETCH"
+const SET_TEMP_PAGE = "SET_TEMP_PAGE"
 let initState = {
   users: [
     // {
@@ -40,9 +41,10 @@ let initState = {
   
   pagesCount:3,
   currentPage:1,
-  usersPerPage:2,
+  usersPerPage:5,
   usersCount:5,
-  isFetching:true
+  isFetching:true,
+  temp:1
 };
 
 const usersReduser = (state = initState, action) => {
@@ -80,7 +82,7 @@ const usersReduser = (state = initState, action) => {
     case SET_PAGE:
       return{
         ...state,
-        currentPage:action.number
+        currentPage:state.temp
       }
     case SET_PAGES_COUNT:
       return{
@@ -96,6 +98,11 @@ const usersReduser = (state = initState, action) => {
       return{
         ...state,
         isFetching:action.value
+      }
+    case SET_TEMP_PAGE:
+      return{
+        ...state,
+        temp:action.temp
       }
     default:
       return state;

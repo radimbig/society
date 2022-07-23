@@ -33,33 +33,42 @@ function withRouter(Component) {
 
 class ProfileClass extends React.Component {
   componentDidMount() {
-      
-      axios.get(`http://server.fsvsgroup.com:1880/profile?id=${this.props.router.params.id}`).then(
+    if(this.props.router.params.id === undefined & this.props.router.params.id ===""){
+      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(
         (res)=>{
           
-          this.props.setProfile(res.data.user)
+          this.props.setProfile(res.data)
         }
       )
+    }else{
+      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.router.params.id}`).then(
+        (res)=>{
+          
+          this.props.setProfile(res.data)
+        }
+      )
+    }
+  
   }
 
   render() {
     if(this.props.router.params.id === undefined){
-      axios.get(`http://server.fsvsgroup.com:1880/profile?id=1`).then(
+      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/24856`).then(
         (res)=>{
           
-          this.props.setProfile(res.data.user)
+          this.props.setProfile(res.data)
         }
       )
     }
 
 
-    if(this.props.profile.name === undefined){
+    if(this.props.profile.fullName === undefined){
       return(<Error text="Profile Not Found" />)
     }else{
           return (
       <div className={w.content}>
         <Profile  user={this.props.profile} />
-        <SuperMyPosts />
+        
       </div>)
     }
 
@@ -71,7 +80,9 @@ class ProfileClass extends React.Component {
 
 let mapStateToProps = (state) =>{
   return({
-    profile:state.profilePage.currentProfile
+    profile:state.profilePage.currentProfile,
+   
+    
   })
 }
 let mapDispatchToProps = (dispatch) =>{

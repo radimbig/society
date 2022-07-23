@@ -1,7 +1,23 @@
 .header {
-    grid-area: h;
-    background-color: greenyellow;
-  }
-  .header img{
-    width: 50px;
-  }
+  grid-area: h;
+  background-color: greenyellow;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  text-align: left;
+  
+}
+
+.header img {
+  width: 50px;
+  border-radius: 100%;
+}
+
+
+.login{
+  display: flex;
+  align-items: right;
+justify-content: right;
+}

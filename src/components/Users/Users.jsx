@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Users.module.css";
 
 
-import avaF from "../../assets/icoF/avaF.png"
 import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
 import Loader from "../common/Loader/Loader";
@@ -15,23 +14,23 @@ import Loader from "../common/Loader/Loader";
 const Users = (props) => {
 
   
-  let pagesCount = [];
-  for (let i = 1; i <= props.pagesCount; i++) {
-    pagesCount.push(i)
-  }
+
 
   let users = props.users.map((M) => {
     let temp;
     let tempCallBack;
     let userImg;
-    if (M.img === null) {
-      if (M.sex === 1) {
-        userImg = avaM;
-      } else {
-        userImg = avaF;
-      }
+    let dis
+
+    if(props.isLogin === true){
+      dis=false
+    }else{
+      dis=true
+    }
+    if (M.photos.small === null) {
+      userImg = avaM
     } else {
-      userImg = M.img;
+      userImg = M.photos.small;
     }
 
     if (M.followed === 1) {
@@ -51,6 +50,7 @@ const Users = (props) => {
     return (
 
       <div key={M.id} className={styles.user}>
+
         <div className={styles.first}>
           <Link to={"/profile/"+ M.id}>
           <img
@@ -59,10 +59,10 @@ const Users = (props) => {
             alt="something wrong..."
           />
           </Link>
-          {M.name} from {M.city} has {M.age} age
+          {M.name}
         </div>
         <div className={styles.second}>{M.bio}</div>
-        <button className={styles.button} onClick={tempCallBack}>
+        <button disabled={dis} className={styles.button} onClick={tempCallBack}>
           {temp}
         </button>
       </div>
@@ -75,15 +75,10 @@ if(props.isFetching === true){
 else{
   return (<div className={styles.main}>
     
-    
+    <input onChange={(e)=>{props.onChange(e.target.value)}} value={props.temp} type=""></input><button onClick={()=>{props.setPage()}}>Go to page!</button>
+    <h5>You on page №{props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
     <div>
-      {pagesCount.map((K) => {
-        if (K === props.currentPage) {
-          return (<span className={styles.selected}> {K} </span>)
-        } else {
-          return (<span className={styles.unselected} onClick={() => { props.setPage(K) }}> {K} </span>)
-        }
-      })}
+
     </div>
     {users}
     <Outlet />

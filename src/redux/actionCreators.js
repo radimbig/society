@@ -1,7 +1,7 @@
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
-
+const SET_TEMP_PAGE = "SET_TEMP_PAGE"
 const TEMP_MESS = "TEMP_MESS"
 const SEND_MESS = "SEND_MESS"
 const UNFOLLOW = "UNFOLLOW"
@@ -12,6 +12,8 @@ const SET_PAGE = "SET_PAGE"
 const SET_PAGES_COUNT = "SET_PAGES_COUNT"
 const SET_COUNT = "SET_COUNT"
 const SET_FETCH = "SET_FETCH"
+const SET_USER_DATA = "SET_USER_DATA"
+const SET_USER_PICTURE ="SET_USER_PICTURE"
 
 
 
@@ -77,8 +79,7 @@ export const addUsersActionCreator = (users) =>{
 
 export const setPageActionCreator = (number) =>{
   return({
-    type:SET_PAGE,
-    number
+    type:SET_PAGE
   })
 }
 
@@ -112,3 +113,25 @@ export const setProfileActionCreator = (profile) =>{
 
 }
 
+export const setTempPageActionCreator = (number) =>{
+  return{
+    type:SET_TEMP_PAGE,
+    temp:number
+  }
+}
+
+
+
+export const setUserDataActionCreator = (data) =>{
+  return({
+    type:SET_USER_DATA,
+   data
+  })
+}     
+
+export const setUserPictureActionCreator = (link)=>{
+  return({
+    type:SET_USER_PICTURE,
+    picture:link
+  })
+}
