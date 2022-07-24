@@ -1,19 +1,16 @@
 import React from "react";
 import {
-    followActionCreator,
-    setCountActionCreator,
-    setFetchActionCreator,
-    setPageActionCreator,
-    setPagesCountActionCreator,
+    follow,
     setTempPageActionCreator,
-    setUsersActionCreator,
-    unfollowActionCreator,
+    unfollow,
+    getUser
   } from "../../redux/actionCreators";
 
 import { connect } from "react-redux/es/exports";
 
 import PureUsers from "./Users";
-import { userAPI } from "../../api/api";
+
+
 
 
   
@@ -29,69 +26,31 @@ import { userAPI } from "../../api/api";
   })
   let mapDispatchToProps = (dispatch) =>{
       return({
-        
+        getUser:(a,b)=>{
+          dispatch(getUser(a,b))
+        },
         onchange:(a) =>{
           dispatch(setTempPageActionCreator(a))
         },
           follow:(a) => {
 
-            dispatch(followActionCreator(a))
+            dispatch(follow(a))
             
         },
           unfollow:(b) => {
             
-            dispatch(unfollowActionCreator(b))
-            
-
+            dispatch(unfollow(b))
         },
-            setFetch:(value)=>{
-              dispatch(setFetchActionCreator(value))
-            },
-            setUsers:(users)=>{
-                  
-                dispatch(setUsersActionCreator(users))
-            },
-            setPage:(number)=>{
-              
-              dispatch(setPageActionCreator(number))
-            },
-            setPagesCount:(number)=>{
-              dispatch(setPagesCountActionCreator(number))
-            },
-            setCount:(number)=>{
-              dispatch(setCountActionCreator(number))
-            }
       })
-  
   }
 
   class UsersAPI extends React.Component {
     componentDidMount() {
-
-      if (this.props.users.length === 0) {
-        this.props.setFetch(true)
-        userAPI.getUser(this.props.currentPage,this.props.usersPerPage).then((data) => {
-          this.props.setUsers(data.items);
-          let temp = data.totalCount;
-          this.props.setCount(temp)
-          
-          let pagesCount = Math.ceil(temp/this.props.usersPerPage);
-          this.props.setPagesCount(pagesCount)
-          
-        });
-      }
- 
-      this.props.setFetch(false)
+      if (this.props.users.length === 0) {this.props.getUser(this.props.usersPage, this.props.usersPerPage)}
     }
-    setPage = (number=this.props.temp) =>{
-     this.props.setFetch(true)
-    this.props.setPage(parseInt(number))
-    userAPI.getUser(number, this.props.usersPerPage).then((data) => {
-      
-      this.props.setUsers(data.items)
-      this.props.setFetch(false)
-    });
-    }
+    setPage = () =>{
+      this.props.getUser(parseInt(this.props.temp), this.props.usersPerPage)
+     }
     render() {return(
       
       

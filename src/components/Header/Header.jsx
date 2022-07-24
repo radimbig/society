@@ -9,7 +9,7 @@ const Header = (props) =>{
 let linkToImg;
   if (props.user !== undefined) {
 
-    if (props.isLogin == true & props.user.picture !== "default") {
+    if (props.isLogin === true & props.user.picture !== "default") {
       linkToImg = <a href={"/profile/"+props.user.id} ><img alt="profile img" src={props.user.picture} /></a>
     }else{linkToImg = <a href={"/profile/"+props.user.id} ><img alt="profile img" src={defImg} /></a>}
   }

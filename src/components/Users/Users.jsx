@@ -5,18 +5,13 @@ import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
 import Loader from "../common/Loader/Loader";
 
-import { userAPI } from "../../api/api";
-// let avaF = "https://cdn-icons-png.flaticon.com/512/219/219969.png";
-// let avaM = "https://cdn-icons-png.flaticon.com/512/219/219986.png";
+
+
 
 
 
 
 const Users = (props) => {
-
-  console.log(props)
-
-
   let users = props.users.map((M) => {
     let temp;
     let tempCallBack;
@@ -36,23 +31,17 @@ const Users = (props) => {
 
     if (M.followed === true) {
       temp = "unfollow";
-      tempCallBack = () => {
-        userAPI.unfollow(M.id).then(data => {
-          if (data.resultCode === 0) {
-            props.unfollow(M.id);
-          }
-        })
-
+      tempCallBack = (e) => {
+        e.target.disabled = true
+        props.unfollow(M.id)
+        e.target.disabled = false   
       };
     } else {
       temp = "follow";
-      tempCallBack = () => {
-        userAPI.follow(M.id).then(data => {
-          if (data.resultCode === 0) {
-            props.follow(M.id);
-          }
-        })
-
+      tempCallBack = (e) => {
+        e.target.disabled = true
+        props.follow(M.id)
+        e.target.disabled = false 
       };
     }
 

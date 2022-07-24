@@ -2,9 +2,9 @@ import React from "react";
 
 import w from "./Profile.module.css"
 import Profile from "./Profile";
-import SuperMyPosts from "./MyPosts/MyPostsContainer";
+
 import { connect } from "react-redux";
-import { setProfileActionCreator } from '../../redux/actionCreators';
+import { getProfile} from '../../redux/actionCreators';
 
 import Error from "../common/Error/Error";
 import {
@@ -12,7 +12,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import { profileAPI } from "../../api/api";
+
 
 
 function withRouter(Component) {
@@ -34,30 +34,17 @@ function withRouter(Component) {
 
 class ProfileClass extends React.Component {
   componentDidMount() {
-    if(this.props.router.params.id === undefined & this.props.router.params.id ===""){
-      profileAPI.getProfile(2).then(
-        (data)=>{
-          this.props.setProfile(data)
-        }
-      )
-    }else{
-      profileAPI.getProfile(this.props.router.params.id).then(
-        (data)=>{
-          this.props.setProfile(data)
-        }
-      )
-    }
-  
+  if(this.props.router.params.id !== undefined){
+    this.props.getProfile(this.props.router.params.id)
+  }else{
+    this.props.getProfile(24856)
+  }
   }
 
   render() {
     
     if(this.props.router.params.id === undefined){
-      profileAPI.getProfile(24856).then(
-        (data)=>{
-          this.props.setProfile(data)
-        }
-      )
+    this.props.getProfile(24856)
     }
 
 
@@ -80,15 +67,12 @@ class ProfileClass extends React.Component {
 let mapStateToProps = (state) =>{
   return({
     profile:state.profilePage.currentProfile,
-   
-    
   })
 }
 let mapDispatchToProps = (dispatch) =>{
   return({
-    setProfile:(profile)=>{
-      
-      dispatch(setProfileActionCreator(profile))
+    getProfile:(id)=>{
+      dispatch(getProfile(id))
     }
   })
 }

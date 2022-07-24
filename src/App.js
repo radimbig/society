@@ -14,12 +14,13 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Error from "./components/common/Error/Error";
 
 
+
 const App = (props) => {
  
   return (
       
       <div className="app-wrapper">
-       
+        
         <HeaderContainer />
         <Navbar data={props.data.sidebarPage} />
         <Routes>

@@ -1,3 +1,4 @@
+import { userAPI, authAPI, profileAPI } from "../api/api";
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
@@ -135,3 +136,69 @@ export const setUserPictureActionCreator = (link)=>{
     picture:link
   })
 }
+
+
+export const getUser = (page = 1, count = 5) => {
+  return (dispatch) => {
+    dispatch(setFetchActionCreator(true))
+    userAPI.getUser(page,count).then((data) => {
+      dispatch(setUsersActionCreator(data.items)) ;
+      let temp = data.totalCount;
+      dispatch(setCountActionCreator(temp))
+      let pagesCount = Math.ceil(temp/count);
+     dispatch(setPagesCountActionCreator(pagesCount))
+     dispatch(setFetchActionCreator(false))
+    });
+  
+  }
+}
+
+export const follow = (userId)=>{
+  return (dispatch)=>{
+    userAPI.follow(userId).then((data)=>{
+      if (data.resultCode === 0) {
+       dispatch(followActionCreator(userId))
+      }
+    })
+  }
+}
+export const unfollow = (userId)=>{
+  return (dispatch)=>{
+    userAPI.unfollow(userId).then((data)=>{
+      if (data.resultCode === 0) {
+       dispatch(unfollowActionCreator(userId))
+      }
+    })
+  }
+}
+
+export const getProfile = (id) =>{
+  return (dispatch)=>{
+    profileAPI.getProfile(id).then(res=>{
+      dispatch(setProfileActionCreator(res))
+    })
+  }
+}
+
+
+export const authMe = ()=>{
+  return (dispatch)=>{
+    let setUserPicture = (id)=>{
+      profileAPI.getProfile(id).then(data=>{
+        if(data.photos.small !== null){
+          dispatch(setUserPictureActionCreator(data.photos.small))
+        }else{
+          dispatch(setUserPictureActionCreator("default"))
+        }
+        
+      })
+    }
+    authAPI.authMe().then(data=>{
+      if(data.resultCode === 0){
+        dispatch(setUserDataActionCreator(data))
+        setUserPicture(data.data.id)
+      }
+    })
+  }
+}
+
