@@ -5,9 +5,12 @@ import icoM from "../../assets/icoM/avaM.png"
 import facebook from "../../assets/socials/facebook.png"
 import github from "../../assets/socials/github.png"
 import instagram from "../../assets/socials/instagram.png"
+import Status from "./Status/Status";
+
 
 
 const Profile = (props) =>{
+
 
     let links = []
     let picture
@@ -37,7 +40,7 @@ const Profile = (props) =>{
             {props.user.fullName}<br />
            
             {"About job: " + props.user.lookingForAJob} <br />
-            {"bio: " + props.user.aboutMe} <br />
+            {"bio: "} <Status text="temp-text" /> <br />
             
             <div className={styles.secondParent}>
                 {links}

@@ -1,10 +1,28 @@
 import React from "react";
-
 import { connect } from 'react-redux/es/exports';
-
-import { authMe} from '../../redux/actionCreators';
-
+import { authMe, getProfile} from '../../redux/actionCreators';
 import Header from "./Header";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+
+  return ComponentWithRouterProp;
+}
 
 class HeaderClass extends React.Component {
 
@@ -14,7 +32,7 @@ class HeaderClass extends React.Component {
 
   render() {
 
-    return (<Header isLogin={this.props.isLogin} user={this.props.user} />)
+    return (<Header setProfile={this.props.getProfile} isLogin={this.props.isLogin} user={this.props.user} />)
   }
 }
 
@@ -25,8 +43,12 @@ let mapDispatchToProps = (dispatch) => {
   return ({
     authMe: () => {
       dispatch(authMe())
-    }})
-}
+    },
+    getProfile:(id)=>{
+    
+      dispatch(getProfile(id))
+    }
+  })}
 let mapStateToProps = (state) => {
   return ({
     user: state.authReduser.user,
@@ -34,7 +56,7 @@ let mapStateToProps = (state) => {
   })
 }
 
-let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderClass)
+let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderClass))
 
 
 export default HeaderContainer

@@ -15,7 +15,7 @@ const SET_COUNT = "SET_COUNT"
 const SET_FETCH = "SET_FETCH"
 const SET_USER_DATA = "SET_USER_DATA"
 const SET_USER_PICTURE ="SET_USER_PICTURE"
-
+const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 
 
 export const tempPostActionCreator = (b) => {
@@ -136,7 +136,12 @@ export const setUserPictureActionCreator = (link)=>{
     picture:link
   })
 }
-
+export const setProfileFetchingActionCreator = (value)=>{
+  return({
+    type:SET_PROFILE_FETCHING,
+    value
+  })
+}
 
 export const getUser = (page = 1, count = 5) => {
   return (dispatch) => {
@@ -174,15 +179,19 @@ export const unfollow = (userId)=>{
 
 export const getProfile = (id) =>{
   return (dispatch)=>{
+    dispatch(setProfileFetchingActionCreator(true))
     profileAPI.getProfile(id).then(res=>{
       dispatch(setProfileActionCreator(res))
+      dispatch(setProfileFetchingActionCreator(false))
     })
+    
   }
 }
 
 
 export const authMe = ()=>{
   return (dispatch)=>{
+    dispatch(setProfileFetchingActionCreator(true))
     let setUserPicture = (id)=>{
       profileAPI.getProfile(id).then(data=>{
         if(data.photos.small !== null){
@@ -190,7 +199,7 @@ export const authMe = ()=>{
         }else{
           dispatch(setUserPictureActionCreator("default"))
         }
-        
+        dispatch(setProfileFetchingActionCreator(false))
       })
     }
     authAPI.authMe().then(data=>{

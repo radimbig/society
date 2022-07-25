@@ -6,8 +6,9 @@ import {
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux/es/exports";
 
+import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 
-const mapStateToProps = (state) => ({ temp: state.dialogsPage.temp, chats:state.dialogsPage.chatsData, messages:state.dialogsPage.messeages})
+const mapStateToProps = (state) => ({ temp: state.dialogsPage.temp, chats:state.dialogsPage.chatsData,isLogin:state.authReduser.isLogin, messages:state.dialogsPage.messeages})
 let mapDispatchToProps = (dispatch) =>{
     return({
         onChange:(text) => {dispatch(tempMessActionCreator(text))},
@@ -15,7 +16,7 @@ let mapDispatchToProps = (dispatch) =>{
     })
 
 }
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(Dialogs))
 
 
 

@@ -12,6 +12,7 @@ import Settings from "./components/Settings/Settings";
 
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Error from "./components/common/Error/Error";
+import Login from "./components/Login/Login";
 
 
 
@@ -40,6 +41,7 @@ const App = (props) => {
           <Route path="/users"  element={<UsersContainer />} ></Route> 
           <Route path="/music"  element={<Music />} ></Route>
           <Route path="/settings"  element={<Settings />} ></Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
 
 

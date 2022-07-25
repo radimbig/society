@@ -12,6 +12,9 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import Loader from './../common/Loader/Loader';
+import Status from "./Status/Status";
 
 
 
@@ -42,10 +45,11 @@ class ProfileClass extends React.Component {
   }
 
   render() {
-    
-    if(this.props.router.params.id === undefined){
-    this.props.getProfile(24856)
+    let ProfileSuper = withAuthRedirect(Profile)
+    if(this.props.isFetching === true){
+      return(<Loader />)
     }
+
 
 
     if(this.props.profile.fullName === undefined){
@@ -53,8 +57,10 @@ class ProfileClass extends React.Component {
     }else{
           return (
       <div className={w.content}>
-        <Profile  user={this.props.profile} />
         
+        <ProfileSuper isLogin={this.props.isLogin} user={this.props.profile} />
+       
+       
       </div>)
     }
 
@@ -67,6 +73,8 @@ class ProfileClass extends React.Component {
 let mapStateToProps = (state) =>{
   return({
     profile:state.profilePage.currentProfile,
+    isLogin:state.authReduser.isLogin,
+    isFetching: state.profilePage.isFetching
   })
 }
 let mapDispatchToProps = (dispatch) =>{

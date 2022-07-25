@@ -1,11 +1,11 @@
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
-
+const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 let initializationState = {
   currentProfile:{
     id:"1",
-    name:"Radim",
+    fullname:"Radim",
     surname:"Voronianskyi",
     image:"https://paintbynumbersforsale.com/wp-content/uploads/2021/11/aesthetic-Capybara-paint-by-numbers-247x296.jpg",
     job:"I`m loking for job as react developer!",
@@ -52,7 +52,11 @@ const profileReducer = (state = initializationState, action) => {
         ...state,
         currentProfile:{...action.profile}
       }
-
+    case SET_PROFILE_FETCHING:
+      return{
+        ...state,
+        isFetching:action.value
+      }
     default:
       return state;
   }

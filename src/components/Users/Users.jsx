@@ -12,6 +12,12 @@ import Loader from "../common/Loader/Loader";
 
 
 const Users = (props) => {
+  let keyDownFun = (e)=>{
+  if(e.key === 'Enter'){
+    props.setPage()
+  }
+  }
+
   let users = props.users.map((M) => {
     let temp;
     let tempCallBack;
@@ -74,7 +80,7 @@ const Users = (props) => {
   else {
     return (<div className={styles.main}>
 
-      <input onChange={(e) => { props.onChange(e.target.value) }} value={props.temp} type=""></input><button onClick={() => { props.setPage() }}>Go to page!</button>
+      <input  autoFocus onKeyDown={keyDownFun} onChange={(e) => { props.onChange(e.target.value) }} value={props.temp} type=""></input><button onKeyDown={keyDownFun}  onClick={props.setPage}>Go to page!</button>
       <h5>You on page №{props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
       <div>
 
