@@ -2,6 +2,7 @@ const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
 const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
+const SET_STATUS = "SET_STATUS"
 let initializationState = {
   currentProfile:{
     id:"1",
@@ -51,6 +52,11 @@ const profileReducer = (state = initializationState, action) => {
       return{
         ...state,
         currentProfile:{...action.profile}
+      }
+    case SET_STATUS:
+      return{
+        ...state,
+        currentProfile:{...state.currentProfile, status:action.text}
       }
     case SET_PROFILE_FETCHING:
       return{

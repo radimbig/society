@@ -16,7 +16,7 @@ const SET_FETCH = "SET_FETCH"
 const SET_USER_DATA = "SET_USER_DATA"
 const SET_USER_PICTURE ="SET_USER_PICTURE"
 const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
-
+const SET_STATUS = "SET_STATUS"
 
 export const tempPostActionCreator = (b) => {
     return {
@@ -143,6 +143,13 @@ export const setProfileFetchingActionCreator = (value)=>{
   })
 }
 
+export const setProfileStatusActionCreator = text =>{
+  return({
+    type:SET_STATUS,
+    text
+  })
+}
+
 export const getUser = (page = 1, count = 5) => {
   return (dispatch) => {
     dispatch(setFetchActionCreator(true))
@@ -182,12 +189,23 @@ export const getProfile = (id) =>{
     dispatch(setProfileFetchingActionCreator(true))
     profileAPI.getProfile(id).then(res=>{
       dispatch(setProfileActionCreator(res))
-      dispatch(setProfileFetchingActionCreator(false))
+      
     })
+    profileAPI.getStatus(id).then(data=>{
+      dispatch(setProfileStatusActionCreator(data))
+      dispatch(setProfileFetchingActionCreator(false))
+      
+    })
+  }
+}
+export const updateStatus = (text)=>{
+  return (dispatch)=>{
+    profileAPI.updateStatus(text).then(data=>{if(data.resultCode === 0){
+      dispatch(setProfileStatusActionCreator(text))
+    }})
     
   }
 }
-
 
 export const authMe = ()=>{
   return (dispatch)=>{

@@ -4,7 +4,7 @@ const SET_USER_PICTURE ="SET_USER_PICTURE"
 
 let init = {
     isLogin:false,
-
+    user:{}
 }
 
 

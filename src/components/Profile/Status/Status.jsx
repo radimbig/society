@@ -3,21 +3,25 @@ import React from "react";
 
 
 class Status extends React.Component{
+    componentDidMount(){
+
+    }
     state={
         editMode:false,
         text:this.props.text
+
     }
     handleFocus = (event) => event.target.select();
-    toggleEditMode = () =>{
+    toggleEditMode = (e) =>{
         if(this.state.editMode === true){
             this.setState({
                 editMode:false
-            },()=>{console.log(this.state)})
-
+            })
+        this.props.updateStatus(e.target.value)    
         }else{
             this.setState({
                 editMode:true
-            }, ()=>{console.log(this.state)})
+            })
         }
 
         
@@ -28,10 +32,14 @@ class Status extends React.Component{
         })
     }
     render(){
-       if(this.state.editMode === false){
-        return(<span onChange={this.onChangeFun} onDoubleClick={this.toggleEditMode}  > {this.props.text} </span>)
-       }else{
-        return(  <input autoFocus  onChange={this.onChangeFun} onFocus={this.handleFocus} onBlur={this.toggleEditMode} type="text" value={this.props.text} ></input>)
+       if(this.state.editMode === false & this.props.you === true){
+        return(<span  onDoubleClick={this.toggleEditMode}  > {this.props.text} </span>)
+       }
+       if(this.state.editMode === false & this.props.you === false){
+        return(<span >{this.props.text}</span>)
+       }
+       if(this.state.editMode === true & this.props.you === true){
+        return(  <input autoFocus  onChange={this.onChangeFun} onFocus={this.handleFocus} onBlur={this.toggleEditMode} type="text" value={this.state.text} ></input>)
        }
     }
 }

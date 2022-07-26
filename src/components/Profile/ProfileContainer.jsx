@@ -8,13 +8,15 @@ import { getProfile} from '../../redux/actionCreators';
 
 import Error from "../common/Error/Error";
 import {
+  Link,
   useLocation,
   useNavigate,
   useParams,
 } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import Loader from './../common/Loader/Loader';
-import Status from "./Status/Status";
+
+import { updateStatus } from './../../redux/actionCreators';
 
 
 
@@ -43,13 +45,14 @@ class ProfileClass extends React.Component {
     this.props.getProfile(24856)
   }
   }
-
+  
   render() {
+    let you
     let ProfileSuper = withAuthRedirect(Profile)
     if(this.props.isFetching === true){
       return(<Loader />)
     }
-
+    if(this.props.currentUser.id === this.props.profile.userId){you=true}else{you=false}
 
 
     if(this.props.profile.fullName === undefined){
@@ -57,8 +60,8 @@ class ProfileClass extends React.Component {
     }else{
           return (
       <div className={w.content}>
-        
-        <ProfileSuper isLogin={this.props.isLogin} user={this.props.profile} />
+        {you? <div>it`s you</div>:<div>it`s not your profile</div>}
+        <ProfileSuper you={you} updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
        
        
       </div>)
@@ -74,6 +77,7 @@ let mapStateToProps = (state) =>{
   return({
     profile:state.profilePage.currentProfile,
     isLogin:state.authReduser.isLogin,
+    currentUser:state.authReduser.user,  
     isFetching: state.profilePage.isFetching
   })
 }
@@ -81,6 +85,9 @@ let mapDispatchToProps = (dispatch) =>{
   return({
     getProfile:(id)=>{
       dispatch(getProfile(id))
+    },
+    updateStatus:(text)=>{
+      dispatch(updateStatus(text))
     }
   })
 }
