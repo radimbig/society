@@ -1,10 +1,11 @@
 const SET_USER_DATA = "SET_USER_DATA"
 const SET_USER_PICTURE ="SET_USER_PICTURE"
-
+const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
 
 let init = {
     isLogin:false,
-    user:{}
+    user:{},
+    isFetching:false
 }
 
 
@@ -26,6 +27,11 @@ let init = {
             return({
                 ...state,
                 user:{...state.user, picture:action.picture}
+            })
+        case SET_AUTH_FETCHING:
+            return({
+                ...state,
+                isFetching:action.value
             })
         default:
             return{

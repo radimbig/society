@@ -14,6 +14,9 @@ let linkToImg;
       linkToImg = <Link to={"/profile/"+props.user.id} ><img onClick={()=>{props.setProfile(props.user.id)}} alt="profile img" src={props.user.picture} /></Link>
     }else{linkToImg = <Link to={"/profile/"+props.user.id} ><img onClick={()=>{props.setProfile(props.user.id)}} alt="profile img" src={defImg} /></Link>}
   }
+  if(props.isLogin === false){
+    linkToImg = null
+  }
 return(<div className={classes.header}>
     <div>
     <img src={logos} alt="logo" />

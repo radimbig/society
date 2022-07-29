@@ -41,7 +41,7 @@ const dialogsReduser = (state = initializationState, action) => {
     case SEND_MESS:
       let newMess = {
         id: state.messeages.length + 1,
-        text: state.temp,
+        text: action.text,
       };
       return {
         ...state,

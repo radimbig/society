@@ -18,7 +18,10 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch)=>{
   return(
     {
-      addPost:()=>{dispatch(addPostActionCreator());},
+      addPost:(text)=>{
+        
+        dispatch(addPostActionCreator(text));
+      },
       tempPost:(body)=>{dispatch(tempPostActionCreator(body));}
     }
   )

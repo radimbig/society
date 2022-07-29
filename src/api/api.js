@@ -1,7 +1,14 @@
 import axios from "axios";
-
+import Debagger from "../components/debagger/Debbager";
 
 const instance = axios.create({
+    baseURL:"https://social-network.samuraijs.com/api/1.0/",
+    withCredentials:true,
+    headers:{
+        "API-KEY":"33602c08-6ab1-4706-a32e-98372c8dc47f"
+    }
+})
+const instance2 = axios.create({
     baseURL:"https://social-network.samuraijs.com/api/1.0/",
     withCredentials:true,
     headers:{
@@ -31,12 +38,16 @@ export const userAPI = {
 export const profileAPI = {
     getProfile(id){
         return instance.get(`profile/${id}`).then(res=>{
-            return(res.data)
+            if(res.status === 200){
+                return(res.data)
+            }
+            
         })
     },
     getStatus(id){
-        return instance.get(`/profile/status/${id}`).then(res=>{
-            return(res.data)
+        return instance2.get(`/profile/status/${id}`).then(res=>{
+           Debagger(res)
+            return(res)
         })
 
     },
@@ -51,6 +62,18 @@ export const profileAPI = {
 export const authAPI = {
     authMe(){
         return instance.get(`auth/me`).then(res=>{
+            return res.data
+        })
+    },
+    login(email, password, rememberMe, captcha){
+        return instance.post(`auth/login`, {
+            headers:{
+                email:email,
+                password:password,
+                rememberMe:rememberMe,
+                captcha:captcha
+            }
+        }).then(res=>{
             return res.data
         })
     }

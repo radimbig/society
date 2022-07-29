@@ -10,6 +10,7 @@ import Status from "./Status/Status";
 
 
 
+
 const Profile = (props) =>{
 
 
@@ -41,7 +42,7 @@ const Profile = (props) =>{
             {props.user.fullName}<br />
            
             {"About job: " + props.user.lookingForAJob} <br />
-            {"bio: "} <Status you={props.you} updateStatus={props.updateStatus} text={props.user.status} /> <br />
+            {"bio: "} <Status id={props.user.userId} getStatus={props.getStatus} you={props.you} updateStatus={props.updateStatus} text={props.status} /> <br />
             
             <div className={styles.secondParent}>
                 {links}

@@ -36,7 +36,7 @@ const profileReducer = (state = initializationState, action) => {
       let NewPost = {
         id: state.postsObj.length + 1,
         likes: 0,
-        text: state.tempPost,
+        text: action.text,
       };
       return {
         ...state,

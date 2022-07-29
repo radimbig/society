@@ -4,7 +4,7 @@ import styles from "./Users.module.css";
 import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
 import Loader from "../common/Loader/Loader";
-
+import { Button } from "bootstrap";
 
 
 
@@ -80,7 +80,7 @@ const Users = (props) => {
   else {
     return (<div className={styles.main}>
 
-      <input  autoFocus onKeyDown={keyDownFun} onChange={(e) => { props.onChange(e.target.value) }} value={props.temp} type=""></input><button onKeyDown={keyDownFun}  onClick={props.setPage}>Go to page!</button>
+      <input  autoFocus onKeyDown={keyDownFun} onChange={(e) => { props.onChange(e.target.value) }} value={props.temp} type=""></input><button onKeyDown={keyDownFun}   onClick={props.setPage}>Go to page!</button>
       <h5>You on page №{props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
       <div>
 

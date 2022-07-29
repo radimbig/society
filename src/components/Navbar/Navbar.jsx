@@ -23,23 +23,6 @@ const Navbar = (props) => {
       <div>
         <Link to="users">All users</Link>
       </div>
-      <div className={classes.bestFriends}>
-        <div className={classes.friend1}>
-          <Link to={"dialogs/" + props.data.bestFriends[0].id}>
-            <img alt="" src={props.data.bestFriends[0].profileLink}></img>
-          </Link>
-        </div>
-        <div className={classes.friend2}>
-          <Link to={"dialogs/" + props.data.bestFriends[1].id}>
-            <img alt="" src={props.data.bestFriends[1].profileLink}></img>
-          </Link>
-        </div>
-        <div className={classes.friend3}>
-          <Link to={"dialogs/" + props.data.bestFriends[2].id}>
-            <img alt="" src={props.data.bestFriends[2].profileLink}></img>
-          </Link>
-        </div>
-      </div>
     </nav>
   );
 };

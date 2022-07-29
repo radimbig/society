@@ -1,16 +1,14 @@
-.app-wrapper { 
-  margin: 0 auto;
-  display: grid;
-  width: 1280px;
- grid-template-areas:
-"h h h"
-"n c c";
- grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
- 
-  
-}
 
 .elementik{
   width: 50px;
+}
+.navBar{
+  background-color: rgb(93, 205, 172);
+}
+.content{
+  background-color: rgb(185, 192, 182);
+}
+
+.header{
+  background-color: greenyellow;
 }

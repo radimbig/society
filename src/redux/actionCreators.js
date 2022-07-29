@@ -1,4 +1,5 @@
 import { userAPI, authAPI, profileAPI } from "../api/api";
+import Debagger from "../components/debagger/Debbager";
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
@@ -17,6 +18,8 @@ const SET_USER_DATA = "SET_USER_DATA"
 const SET_USER_PICTURE ="SET_USER_PICTURE"
 const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 const SET_STATUS = "SET_STATUS"
+const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
+
 
 export const tempPostActionCreator = (b) => {
     return {
@@ -25,9 +28,10 @@ export const tempPostActionCreator = (b) => {
     };
   };
   
-  export const addPostActionCreator = () =>{
+  export const addPostActionCreator = (text) =>{
     return({
-      type:ADD_POST
+      type:ADD_POST,
+      text
     })}
   
   
@@ -40,10 +44,11 @@ export const tempPostActionCreator = (b) => {
   )
   }
   
-  export const sendMessActionCreator = () =>{
+  export const sendMessActionCreator = (text) =>{
     return(
       {
-        type:SEND_MESS
+        type:SEND_MESS,
+        text
       }
     )
   }
@@ -137,6 +142,7 @@ export const setUserPictureActionCreator = (link)=>{
   })
 }
 export const setProfileFetchingActionCreator = (value)=>{
+ 
   return({
     type:SET_PROFILE_FETCHING,
     value
@@ -149,6 +155,11 @@ export const setProfileStatusActionCreator = text =>{
     text
   })
 }
+export const setAuthFetchingActionCreator = value =>({
+  type:SET_AUTH_FETCHING,
+  value
+})
+
 
 export const getUser = (page = 1, count = 5) => {
   return (dispatch) => {
@@ -159,10 +170,11 @@ export const getUser = (page = 1, count = 5) => {
       dispatch(setCountActionCreator(temp))
       let pagesCount = Math.ceil(temp/count);
      dispatch(setPagesCountActionCreator(pagesCount))
-     dispatch(setFetchActionCreator(false))
+    
     });
-  
+    dispatch(setFetchActionCreator(false))
   }
+  
 }
 
 export const follow = (userId)=>{
@@ -189,12 +201,23 @@ export const getProfile = (id) =>{
     dispatch(setProfileFetchingActionCreator(true))
     profileAPI.getProfile(id).then(res=>{
       dispatch(setProfileActionCreator(res))
-      
-    })
-    profileAPI.getStatus(id).then(data=>{
-      dispatch(setProfileStatusActionCreator(data))
       dispatch(setProfileFetchingActionCreator(false))
+    })
+  }
+}
+
+export const getStatus = (id)=>{
+  return (dispatch)=>{
+    dispatch(setProfileFetchingActionCreator(false))
+    profileAPI.getStatus(id).then(data=>{
       
+      if(data.data !== undefined & data.status === 200){
+        dispatch(setProfileStatusActionCreator(data.data))
+        dispatch(setProfileFetchingActionCreator(false))
+      }
+      else{
+        dispatch(setProfileFetchingActionCreator(true))
+      }
     })
   }
 }
@@ -210,6 +233,7 @@ export const updateStatus = (text)=>{
 export const authMe = ()=>{
   return (dispatch)=>{
     dispatch(setProfileFetchingActionCreator(true))
+    dispatch(setAuthFetchingActionCreator(true))
     let setUserPicture = (id)=>{
       profileAPI.getProfile(id).then(data=>{
         if(data.photos.small !== null){
@@ -218,6 +242,7 @@ export const authMe = ()=>{
           dispatch(setUserPictureActionCreator("default"))
         }
         dispatch(setProfileFetchingActionCreator(false))
+        dispatch(setAuthFetchingActionCreator(false))
       })
     }
     authAPI.authMe().then(data=>{
@@ -226,6 +251,21 @@ export const authMe = ()=>{
         setUserPicture(data.data.id)
       }
     })
+    dispatch(setProfileFetchingActionCreator(false))
+    dispatch(setAuthFetchingActionCreator(false))
   }
 }
-
+export const loginMe = (email, password, rememberMe,captcha)=>{
+  Debagger("login thunk input", email, password, rememberMe, captcha)
+  return(dispatch)=>{
+    dispatch(setAuthFetchingActionCreator(true))
+    authAPI.login(email, password, rememberMe, captcha).then(data=>{
+      if(data.resultCode === 0){
+        Debagger("succes", data)
+      }else{
+        Debagger("feiled", data)
+      }
+      dispatch(setAuthFetchingActionCreator(false))
+    })
+  }
+}

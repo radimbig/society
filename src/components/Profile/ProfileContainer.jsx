@@ -4,11 +4,10 @@ import w from "./Profile.module.css"
 import Profile from "./Profile";
 
 import { connect } from "react-redux";
-import { getProfile} from '../../redux/actionCreators';
+import { getProfile, getStatus} from '../../redux/actionCreators';
 
 import Error from "../common/Error/Error";
 import {
-  Link,
   useLocation,
   useNavigate,
   useParams,
@@ -17,6 +16,8 @@ import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import Loader from './../common/Loader/Loader';
 
 import { updateStatus } from './../../redux/actionCreators';
+import debagger from "../debagger/Debbager";
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
 
@@ -38,15 +39,28 @@ function withRouter(Component) {
 
 
 class ProfileClass extends React.Component {
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps !== this.props){
+      this.setState({})
+      debagger("Profile class", this.props)
+    }
+  }
+  state = {
+    text:this.props.text
+  }
   componentDidMount() {
   if(this.props.router.params.id !== undefined){
     this.props.getProfile(this.props.router.params.id)
+    this.props.getStatus(this.props.router.params.id)
   }else{
     this.props.getProfile(24856)
+    this.props.getStatus(24856)
+    
   }
   }
   
   render() {
+    
     let you
     let ProfileSuper = withAuthRedirect(Profile)
     if(this.props.isFetching === true){
@@ -61,8 +75,8 @@ class ProfileClass extends React.Component {
           return (
       <div className={w.content}>
         {you? <div>it`s you</div>:<div>it`s not your profile</div>}
-        <ProfileSuper you={you} updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
-       
+        <ProfileSuper you={you} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
+          <MyPostsContainer />
        
       </div>)
     }
@@ -76,6 +90,7 @@ class ProfileClass extends React.Component {
 let mapStateToProps = (state) =>{
   return({
     profile:state.profilePage.currentProfile,
+    status:state.profilePage.currentProfile.status,
     isLogin:state.authReduser.isLogin,
     currentUser:state.authReduser.user,  
     isFetching: state.profilePage.isFetching
@@ -88,6 +103,9 @@ let mapDispatchToProps = (dispatch) =>{
     },
     updateStatus:(text)=>{
       dispatch(updateStatus(text))
+    },
+    getStatus: (id)=>{
+      dispatch(getStatus(id))
     }
   })
 }

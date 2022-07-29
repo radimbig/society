@@ -1,24 +1,19 @@
 import React from "react";
 
 import Post from "./Post/Post";
+import MessForm from "./PostForm";
 
 
-let textArea = React.createRef();
+
 
 
 function MyPosts(props) {
   
-  function TempPost(){
-    let text = textArea.current.value;
-    
-    props.tempPost(text)
-  }
 
 
-  function addPost() {
 
-    
-    props.addPost();
+  function addPost(e) {
+    props.addPost(e);
   }
   let bebra = props.posts.map((L) => {
     return <Post key={L.id} likes={L.likes} text={L.text} />;
@@ -26,10 +21,7 @@ function MyPosts(props) {
   
   return (
     <div>
-      <textarea onChange={TempPost} value={props.temp} ref={textArea}></textarea>
-      <div>
-        <button onClick={addPost}>Add post  </button>
-      </div>
+      <MessForm temp={props.temp} tempPost={props.tempPost} addPost={addPost} />
       {bebra}
     </div>
   );

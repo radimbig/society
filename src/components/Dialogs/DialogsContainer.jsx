@@ -11,8 +11,7 @@ import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 const mapStateToProps = (state) => ({ temp: state.dialogsPage.temp, chats:state.dialogsPage.chatsData,isLogin:state.authReduser.isLogin, messages:state.dialogsPage.messeages})
 let mapDispatchToProps = (dispatch) =>{
     return({
-        onChange:(text) => {dispatch(tempMessActionCreator(text))},
-        sendMess:() => {dispatch(sendMessActionCreator())}
+        sendMess:(e) => {dispatch(sendMessActionCreator(e))}
     })
 
 }
