@@ -23,8 +23,10 @@ return(<div className={classes.header}>
     </div>
     <div className={classes.login}>
        
-      <h5>{props.isLogin ? `You logined as ${props.user.login}`:<div>you have to  <Link to="/login" >login</Link></div>}</h5>
-      {linkToImg}
+      {props.isLogin ? <h5>You logined as {props.user.login} <br /> <span className={classes.logout} onClick={props.logout}>Logout</span> </h5>:<span>you have to  <Link to="/login" >login</Link></span>}
+      
+      {linkToImg} 
+      
     </div>
     <Outlet />
     </div>

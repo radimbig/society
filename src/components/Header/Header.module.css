@@ -21,3 +21,8 @@
   align-items: right;
 justify-content: right;
 }
+
+.logout{
+  cursor: pointer;
+  color:blue
+}

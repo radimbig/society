@@ -3,11 +3,15 @@ import Login from "./Login";
 import { connect } from 'react-redux/es/exports';
 import Loader from "../common/Loader/Loader";
 import { loginMe } from "../../redux/actionCreators";
+import { Navigate } from "react-router-dom";
 
 class LoginContainer extends React.Component{
 
 
     render(){
+        if(this.props.isLogin === true){
+            return(<Navigate to="/profile" />)
+        }
        if(this.props.isFetching){
         return(<Loader />)
        }else{

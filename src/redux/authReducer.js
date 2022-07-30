@@ -13,6 +13,15 @@ let init = {
     
     switch(action.type){
         case SET_USER_DATA:
+            if(action.data === "delete"){
+             return{
+                ...state,
+                isLogin:false,
+                user:{
+                    login:null, id:null, email:null
+                }
+             }       
+            }
             return({
                 ...state,       
                 user:{

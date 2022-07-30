@@ -262,10 +262,20 @@ export const loginMe = (email, password, rememberMe,captcha)=>{
     authAPI.login(email, password, rememberMe, captcha).then(data=>{
       if(data.resultCode === 0){
         Debagger("succes", data)
+        dispatch(authMe())
       }else{
         Debagger("feiled", data)
       }
+      if(data.resultCode === 1){
+        alert("Wrong password or email!")
+      }
       dispatch(setAuthFetchingActionCreator(false))
     })
+  }
+}
+export const LogOut = ()=>{
+  return(dispatch)=>{
+    authAPI.logout()
+    dispatch(setUserDataActionCreator("delete"))
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux/es/exports';
-import { authMe, getProfile} from '../../redux/actionCreators';
+import { authMe, getProfile, LogOut} from '../../redux/actionCreators';
 import Header from "./Header";
 import {
   useLocation,
@@ -32,7 +32,7 @@ class HeaderClass extends React.Component {
 
   render() {
 
-    return (<Header setProfile={this.props.getProfile} isLogin={this.props.isLogin} user={this.props.user} />)
+    return (<Header logout={this.props.logout} setProfile={this.props.getProfile} isLogin={this.props.isLogin} user={this.props.user} />)
   }
 }
 
@@ -45,9 +45,13 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(authMe())
     },
     getProfile:(id)=>{
-    
+      
       dispatch(getProfile(id))
+    },
+    logout:()=>{
+      dispatch(LogOut())
     }
+
   })}
 let mapStateToProps = (state) => {
   return ({
