@@ -6,7 +6,8 @@ let init = {
     isLogin:false,
     user:{},
     isFetching:false,
-    errors:false
+    errors:false,
+    captcha:false
 }
 
 
@@ -46,7 +47,8 @@ let init = {
         case SET_AUTH_ERROR:
             return({
                 ...state,
-                errors:action.error
+                errors:action.error,
+                captcha:action.captcha
             })    
         default:
             return{

@@ -159,10 +159,11 @@ export const setAuthFetchingActionCreator = value =>({
   type:SET_AUTH_FETCHING,
   value
 })
-export const setAuthErrorActionCreator = error =>{
+export const setAuthErrorActionCreator = (error, captcha) =>{
   return({
     type:SET_AUTH_ERROR,
-    error
+    error,
+    captcha
   })
 }
 
@@ -276,7 +277,12 @@ export const loginMe = (email, password, rememberMe,captcha)=>{
         dispatch(setAuthErrorActionCreator("Wrong password or email, try again"))
       }
       if(data.resultCode === 10){
-        dispatch(setAuthErrorActionCreator("Our bot thinks that you bot..."))
+        
+        authAPI.captcha().then(payload=>{
+          
+          dispatch(setAuthErrorActionCreator("Our bot thinks that you bot...", payload))
+        })
+
       }
       dispatch(setAuthFetchingActionCreator(false))
     })

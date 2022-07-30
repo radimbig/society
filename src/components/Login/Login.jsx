@@ -3,14 +3,14 @@ import * as yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import s from "./Login.module.css"
 import { Formik, Form, Field } from 'formik';
-import { Alert } from "react-bootstrap";
+
 
 const Login = (props) => {
   
     return (
         <div>
             <h1>LOGIN PAGE</h1>
-            <LoginForm errors={props.errors} login={props.login} />
+            <LoginForm captcha={props.captcha} errors={props.errors} login={props.login} />
 
         </div>)
 }
@@ -27,10 +27,11 @@ const LoginForm = (props) =>{
     initialValues={{
       email:"",
       password:"",
-      rememberMe:false
+      rememberMe:false,
+      captcha:""
     }}
     validationSchema={schema}
-    onSubmit={(values)=>{ props.login(values.email, values.password, values.rememberMe)}}
+    onSubmit={(values)=>{ props.login(values.email, values.password, values.rememberMe, values.captcha)}}
     
     validateOnMount={false}
     validateOnChange={false}
@@ -64,6 +65,10 @@ const LoginForm = (props) =>{
               
             <Button disabled={errors.email || errors.password || !touched.email || !touched.password ? true:false} variant="success" type="submit" >Login</Button>
             {props.errors !== false ? <div>{props.errors}</div>:null}
+            {props.errors === "Our bot thinks that you bot..." ? <div>
+              <img alt="captcha img"  src={props.captcha} /> <br />
+              <Field  name="captcha" />
+            </div>:null}
             </span>
             
           </Form>)}}

@@ -15,7 +15,7 @@ class LoginContainer extends React.Component{
        if(this.props.isFetching){
         return(<Loader />)
        }else{
-        return(<Login errors={this.props.errors} login={this.props.login} isLogin={this.props.isLogin} />)
+        return(<Login captcha={this.props.captcha} errors={this.props.errors} login={this.props.login} isLogin={this.props.isLogin} />)
        }
         
     }
@@ -25,7 +25,8 @@ let mapStateToProps = (state)=>{
     return({
         isLogin:state.authReduser.isLogin,
         isFetching:state.authReduser.isFetching,
-        errors:state.authReduser.errors
+        errors:state.authReduser.errors,
+        captcha:state.authReduser.captcha
     })
 }
 let mapDispatchToProps = (dispatch)=>{
