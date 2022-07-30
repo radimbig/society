@@ -19,7 +19,7 @@ const SET_USER_PICTURE ="SET_USER_PICTURE"
 const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 const SET_STATUS = "SET_STATUS"
 const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
-
+const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 
 export const tempPostActionCreator = (b) => {
     return {
@@ -159,7 +159,12 @@ export const setAuthFetchingActionCreator = value =>({
   type:SET_AUTH_FETCHING,
   value
 })
-
+export const setAuthErrorActionCreator = error =>{
+  return({
+    type:SET_AUTH_ERROR,
+    error
+  })
+}
 
 export const getUser = (page = 1, count = 5) => {
   return (dispatch) => {
@@ -268,6 +273,10 @@ export const loginMe = (email, password, rememberMe,captcha)=>{
       }
       if(data.resultCode === 1){
         alert("Wrong password or email!")
+        dispatch(setAuthErrorActionCreator("Wrong password or email, try again"))
+      }
+      if(data.resultCode === 10){
+        dispatch(setAuthErrorActionCreator("Our bot thinks that you bot..."))
       }
       dispatch(setAuthFetchingActionCreator(false))
     })

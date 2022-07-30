@@ -1,11 +1,12 @@
 const SET_USER_DATA = "SET_USER_DATA"
 const SET_USER_PICTURE ="SET_USER_PICTURE"
 const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
-
+const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 let init = {
     isLogin:false,
     user:{},
-    isFetching:false
+    isFetching:false,
+    errors:false
 }
 
 
@@ -42,6 +43,11 @@ let init = {
                 ...state,
                 isFetching:action.value
             })
+        case SET_AUTH_ERROR:
+            return({
+                ...state,
+                errors:action.error
+            })    
         default:
             return{
                 ...state
