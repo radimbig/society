@@ -207,6 +207,7 @@ export const getProfile = (id) =>{
     dispatch(setProfileFetchingActionCreator(true))
     profileAPI.getProfile(id).then(res=>{
       dispatch(setProfileActionCreator(res))
+      dispatch(getStatus(id))
       dispatch(setProfileFetchingActionCreator(false))
     })
   }
