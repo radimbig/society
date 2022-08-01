@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 
 
 
-const News = (props) =>{
-    return(
-        <div>
-            Here is News!
-        </div>
-    )
+const News = (props) => {
+    return(<>Here`s news</>)
+    
 }
 
 export default News;

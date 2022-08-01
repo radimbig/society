@@ -15,6 +15,9 @@ const Navbar = (props) => {
         <Link to="news">News</Link>
       </div>
       <div>
+        <Link to="game">Game</Link>
+      </div>
+      <div>
         <Link to="music">Music</Link>
       </div>
       <div>

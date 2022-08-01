@@ -16,6 +16,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Error from "./components/common/Error/Error";
 import Login from "./components/Login/Login";
 import LoginContainer from "./components/Login/LoginContainer";
+import Game from "./components/Game/Game";
 
 
 const App = (props) => {
@@ -48,6 +49,7 @@ const App = (props) => {
           <Route path="*" element={<Error text="ERROR 404 page not found" />} ></Route>
           <Route path="/news"  element={<News />} ></Route> 
           <Route path="/users"  element={<UsersContainer />} ></Route> 
+          <Route path="/game" element={<Game />}></Route>
           <Route path="/music"  element={<Music />} ></Route>
           <Route path="/settings"  element={<Settings />} ></Route>
           <Route path="/login" element={<LoginContainer />} />
