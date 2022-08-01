@@ -176,9 +176,10 @@ export const getUser = (page = 1, count = 5) => {
       dispatch(setCountActionCreator(temp))
       let pagesCount = Math.ceil(temp/count);
      dispatch(setPagesCountActionCreator(pagesCount))
-    
+      dispatch(setPageActionCreator())
+      dispatch(setFetchActionCreator(false))
     });
-    dispatch(setFetchActionCreator(false))
+    
   }
   
 }
