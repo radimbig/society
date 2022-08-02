@@ -38,12 +38,8 @@ const Game = (props) => {
                         <Col>
                             <span>{count2}</span>
                         </Col>
-                    
-
                 </Row>
             </Container>
-
-
         </div>
     )
 }
