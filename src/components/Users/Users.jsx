@@ -14,7 +14,7 @@ import Loader from "../common/Loader/Loader";
 const Users = (props) => {
   const [isvalid, setValid] = useState(true)
   let keyDownFun = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && isvalid) {
       props.setPage()
     }
   }
