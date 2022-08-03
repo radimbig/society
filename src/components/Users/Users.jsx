@@ -4,6 +4,7 @@ import { useState } from "react";
 import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
 import Loader from "../common/Loader/Loader";
+import Pagenator from "./Pagenator";
 
 
 
@@ -91,20 +92,8 @@ const Users = (props) => {
   else {
     return (<div className={styles.main}>
 
-      {editMode ? <input autoFocus onKeyDown={keyDownFun} onChange={onChangeHandler} value={props.temp} type=""></input>:null}
-      <button disabled={isvalid ? false:true} onKeyDown={keyDownFun} onClick={props.setPage}>Go to page!</button>
-      <div>
-        <input onKeyDown={keyDownFun} onChange={onChangeHandler} value={props.temp}  type="range" min="1" step={1} max={props.pagesCount}></input>
-          <div  onDoubleClick={()=>{if(editMode === false){setEditMode(true)}else{setEditMode(false)}}}>
-            <span className={styles.smalNum}>{parseInt(props.temp) -1 === 0 ?  null:parseInt(props.temp) - 1 }</span> 
-              <span className={styles.mainNub}>{parseInt(props.temp)}</span>
-            <span className={styles.smalNum}>{parseInt(props.temp) === props.pagesCount ? null : parseInt(props.temp) + 1 }</span>
-          </div>
-      </div>
+      <Pagenator {...props} />
       <h5>You on page {props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
-      <div>
-
-      </div>
       {users}
       <Outlet />
     </div>)
