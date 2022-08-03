@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Users.module.css";
-
+import { useState } from "react";
 import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
 import Loader from "../common/Loader/Loader";
-import { Button } from "bootstrap";
+
 
 
 
@@ -12,10 +12,11 @@ import { Button } from "bootstrap";
 
 
 const Users = (props) => {
-  let keyDownFun = (e)=>{
-  if(e.key === 'Enter'){
-    props.setPage()
-  }
+  const [isvalid, setValid] = useState(true)
+  let keyDownFun = (e) => {
+    if (e.key === 'Enter') {
+      props.setPage()
+    }
   }
 
   let users = props.users.map((M) => {
@@ -40,14 +41,14 @@ const Users = (props) => {
       tempCallBack = (e) => {
         e.target.disabled = true
         props.unfollow(M.id)
-        e.target.disabled = false   
+        e.target.disabled = false
       };
     } else {
       temp = "follow";
       tempCallBack = (e) => {
         e.target.disabled = true
         props.follow(M.id)
-        e.target.disabled = false 
+        e.target.disabled = false
       };
     }
 
@@ -74,13 +75,26 @@ const Users = (props) => {
     );
   });
 
+  let onChangeHandler = (e)=>{
+    if(e.target.value > props.pagesCount){
+      setValid(false)
+    }else{
+      setValid(true)
+    }
+    props.onChange(e.target.value)
+  }
+
   if (props.isFetching === true) {
     return (<Loader />)
   }
   else {
     return (<div className={styles.main}>
 
-      <input  autoFocus onKeyDown={keyDownFun} onChange={(e) => { props.onChange(e.target.value) }} value={props.temp} type=""></input><button onKeyDown={keyDownFun}   onClick={props.setPage}>Go to page!</button>
+      <input autoFocus onKeyDown={keyDownFun} onChange={onChangeHandler} value={props.temp} type=""></input>
+      <button disabled={isvalid ? false:true} onKeyDown={keyDownFun} onClick={props.setPage}>Go to page!</button>
+      <div>
+        <input onChange={onChangeHandler} value={props.temp}  type="range" min="1" step={1} max={props.pagesCount}></input>
+      </div>
       <h5>You on page №{props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
       <div>
 
