@@ -12,7 +12,8 @@ import Loader from "../common/Loader/Loader";
 
 
 const Users = (props) => {
-  const [isvalid, setValid] = useState(true)
+  let [isvalid, setValid] = useState(true)
+  let [editMode, setEditMode] = useState(false)
   let keyDownFun = (e) => {
     if (e.key === 'Enter' && isvalid) {
       props.setPage()
@@ -90,12 +91,17 @@ const Users = (props) => {
   else {
     return (<div className={styles.main}>
 
-      <input autoFocus onKeyDown={keyDownFun} onChange={onChangeHandler} value={props.temp} type=""></input>
+      {editMode ? <input autoFocus onKeyDown={keyDownFun} onChange={onChangeHandler} value={props.temp} type=""></input>:null}
       <button disabled={isvalid ? false:true} onKeyDown={keyDownFun} onClick={props.setPage}>Go to page!</button>
       <div>
-        <input onChange={onChangeHandler} value={props.temp}  type="range" min="1" step={1} max={props.pagesCount}></input>
+        <input onKeyDown={keyDownFun} onChange={onChangeHandler} value={props.temp}  type="range" min="1" step={1} max={props.pagesCount}></input>
+          <div  onDoubleClick={()=>{if(editMode === false){setEditMode(true)}else{setEditMode(false)}}}>
+            <span className={styles.smalNum}>{parseInt(props.temp) -1 === 0 ?  null:parseInt(props.temp) - 1 }</span> 
+              <span className={styles.mainNub}>{parseInt(props.temp)}</span>
+            <span className={styles.smalNum}>{parseInt(props.temp) === props.pagesCount ? null : parseInt(props.temp) + 1 }</span>
+          </div>
       </div>
-      <h5>You on page №{props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
+      <h5>You on page {props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
       <div>
 
       </div>
