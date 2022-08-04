@@ -14,12 +14,8 @@ import Pagenator from "./Pagenator";
 
 const Users = (props) => {
   let [isvalid, setValid] = useState(true)
-  let [editMode, setEditMode] = useState(false)
-  let keyDownFun = (e) => {
-    if (e.key === 'Enter' && isvalid) {
-      props.setPage()
-    }
-  }
+
+
 
   let users = props.users.map((M) => {
     let temp;
@@ -53,10 +49,7 @@ const Users = (props) => {
         e.target.disabled = false
       };
     }
-
-
     return (
-
       <div key={M.id} className={styles.user}>
 
         <div className={styles.first}>
@@ -77,14 +70,7 @@ const Users = (props) => {
     );
   });
 
-  let onChangeHandler = (e)=>{
-    if(e.target.value > props.pagesCount){
-      setValid(false)
-    }else{
-      setValid(true)
-    }
-    props.onChange(e.target.value)
-  }
+
 
   if (props.isFetching === true) {
     return (<Loader />)
