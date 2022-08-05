@@ -15,7 +15,7 @@ import {
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import Loader from './../common/Loader/Loader';
 
-import { updateStatus } from './../../redux/actionCreators';
+import { updateStatus, updateProfileImg } from './../../redux/actionCreators';
 import debagger from "../debagger/Debbager";
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
@@ -75,7 +75,7 @@ class ProfileClass extends React.Component {
           return (
       <div className={w.content}>
         {you? <div>it`s you</div>:<div>it`s not your profile</div>}
-        <ProfileSuper you={you} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
+        <ProfileSuper you={you} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
           <MyPostsContainer />
        
       </div>)
@@ -106,6 +106,9 @@ let mapDispatchToProps = (dispatch) =>{
     },
     getStatus: (id)=>{
       dispatch(getStatus(id))
+    },
+    updateImg:(img)=>{
+      dispatch(updateProfileImg(img))
     }
   })
 }

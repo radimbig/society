@@ -1,5 +1,6 @@
 import { userAPI, authAPI, profileAPI } from "../api/api";
 import Debagger from "../components/debagger/Debbager";
+
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
@@ -20,6 +21,8 @@ const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 const SET_STATUS = "SET_STATUS"
 const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
 const SET_AUTH_ERROR = "SET_AUTH_ERROR"
+const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
+
 
 export const tempPostActionCreator = (b) => {
     return {
@@ -167,6 +170,15 @@ export const setAuthErrorActionCreator = (error, captcha) =>{
   })
 }
 
+
+export const setProfilePictureActionCreator = (img) =>{
+  return({
+    type:SET_PROFILE_PICTURE,
+    img
+  })
+
+}
+
 export const getUser = (page = 1, count = 5) => {
   return (dispatch) => {
     dispatch(setFetchActionCreator(true))
@@ -294,5 +306,17 @@ export const LogOut = ()=>{
   return(dispatch)=>{
     authAPI.logout()
     dispatch(setUserDataActionCreator("delete"))
+  }
+}
+
+export const updateProfileImg = (img) =>{
+  return async (dispatch)=>{
+    dispatch(setProfileFetchingActionCreator(true))
+   let response = await profileAPI.updateProfileImg(img)
+   if(response.resultCode === 0){
+    dispatch(setProfilePictureActionCreator(response.data))
+    dispatch(authMe())
+   }
+   dispatch(setProfileFetchingActionCreator(false))
   }
 }

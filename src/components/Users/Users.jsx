@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Users.module.css";
-import { useState } from "react";
+
 import avaM from "../../assets/icoM/avaM.png"
 import { Link, Outlet } from "react-router-dom";
 import Loader from "../common/Loader/Loader";
@@ -13,7 +13,7 @@ import Pagenator from "./Pagenator";
 
 
 const Users = (props) => {
-  let [isvalid, setValid] = useState(true)
+  
 
 
 

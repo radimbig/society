@@ -11,10 +11,8 @@ import Col from "react-bootstrap/esm/Col";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Error from "./components/common/Error/Error";
-import Login from "./components/Login/Login";
 import LoginContainer from "./components/Login/LoginContainer";
 import Game from "./components/Game/Game";
 

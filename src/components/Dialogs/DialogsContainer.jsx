@@ -1,7 +1,6 @@
 
 import {
-  sendMessActionCreator,
-  tempMessActionCreator,
+  sendMessActionCreator
 } from "../../redux/actionCreators";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux/es/exports";

@@ -3,6 +3,7 @@ const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
 const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 const SET_STATUS = "SET_STATUS"
+const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
 let initializationState = {
   currentProfile:{
     id:"1",
@@ -62,6 +63,14 @@ const profileReducer = (state = initializationState, action) => {
       return{
         ...state,
         isFetching:action.value
+      }
+    case SET_PROFILE_PICTURE:
+      return{
+        ...state,
+        currentProfile:{...state.currentProfile, photos:{
+          small:action.img.photos.small,
+          large:action.img.photos.large
+        }}
       }
     default:
       return state;
