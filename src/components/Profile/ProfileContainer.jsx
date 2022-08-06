@@ -75,7 +75,7 @@ class ProfileClass extends React.Component {
           return (
       <div className={w.content}>
         {you? <div>it`s you</div>:<div>it`s not your profile</div>}
-        <ProfileSuper you={you} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
+        <ProfileSuper you={you} error={this.props.error} errorMes={this.props.errorMes} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
           <MyPostsContainer />
        
       </div>)
@@ -93,7 +93,9 @@ let mapStateToProps = (state) =>{
     status:state.profilePage.currentProfile.status,
     isLogin:state.authReduser.isLogin,
     currentUser:state.authReduser.user,  
-    isFetching: state.profilePage.isFetching
+    isFetching: state.profilePage.isFetching,
+    error:state.profilePage.error,
+    errorMes:state.profilePage.errorMes
   })
 }
 let mapDispatchToProps = (dispatch) =>{

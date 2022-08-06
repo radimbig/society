@@ -1,6 +1,5 @@
 import { userAPI, authAPI, profileAPI } from "../api/api";
 import Debagger from "../components/debagger/Debbager";
-
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
 const SET_PROFILE ="SET_PROFILE"
@@ -22,7 +21,7 @@ const SET_STATUS = "SET_STATUS"
 const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
 const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
-
+const SET_PROFILE_ERROR = "SET_PROFILE_ERROR"
 
 export const tempPostActionCreator = (b) => {
     return {
@@ -178,6 +177,12 @@ export const setProfilePictureActionCreator = (img) =>{
   })
 
 }
+export const setProfileErrorActionCreator = (error) =>{
+return({
+  type:SET_PROFILE_ERROR,
+  error
+})
+}
 
 export const getUser = (page = 1, count = 5) => {
   return (dispatch) => {
@@ -329,6 +334,7 @@ export const updateProfile = (profile) =>{
     if(response.data.resultCode === 0){
       dispatch(getProfile(profile.userId))
     }
+    dispatch(setProfileErrorActionCreator(response.data))
     dispatch(setProfileFetchingActionCreator(false))
   }
 }

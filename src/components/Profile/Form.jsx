@@ -14,7 +14,6 @@ const ProfileForm = (props) =>{
         initialValues:props.user,
         onSubmit: values =>{
             props.stopEditMod()    
-            console.log(values)
             props.updateProfile(values)
         },
         validationSchema:schema

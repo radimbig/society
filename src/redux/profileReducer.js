@@ -4,6 +4,7 @@ const SET_PROFILE ="SET_PROFILE"
 const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 const SET_STATUS = "SET_STATUS"
 const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
+const SET_PROFILE_ERROR = "SET_PROFILE_ERROR"
 let initializationState = {
   currentProfile:{
     id:"1",
@@ -26,7 +27,9 @@ let initializationState = {
     { id: 4, likes: 22, text: "bebromentr" },
   ],
   tempPost: "Radim",
-  isFetching:true
+  isFetching:true,
+  error:false,
+  errorMes:null
 };
 
 const profileReducer = (state = initializationState, action) => {
@@ -71,6 +74,21 @@ const profileReducer = (state = initializationState, action) => {
           small:action.img.photos.small,
           large:action.img.photos.large
         }}
+      }
+    case SET_PROFILE_ERROR:
+      
+      if(action.error.resultCode === 0){
+        return({
+          ...state, 
+          error:false,
+          errorMes:null
+        })
+      }else{
+        return({
+          ...state,
+          error:true,
+          errorMes:action.error.messages[0]
+        })
       }
     default:
       return state;
