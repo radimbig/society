@@ -1,33 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./Profile.module.css"
 import icoM from "../../assets/icoM/avaM.png"
 import Image from 'react-bootstrap/Image'
-import facebook from "../../assets/socials/facebook.png"
-import github from "../../assets/socials/github.png"
-import instagram from "../../assets/socials/instagram.png"
 import Status from "./Status/Status";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
-
+import SocialLinks from "./SocialLinks";
+import ProfileForm from "./Form";
+import ProfileText from "./ProfileInfo";
 
 
 
 const Profile = (props) =>{
-    let onChangeHandler = (e) =>{
-        props.updateImg(e.target.files[0])
+    let picture
+    let [editMode, setEditMode] = useState(false)
+    let toggleEditMode = (e) =>{
+        if(editMode === false){
+            setEditMode(true)
+        }else{
+            setEditMode(false)
+        }
     }
 
-    let links = []
-    let picture
-    if(props.user.contacts.instagram !== null && props.user.instagram !== ""){
-        links.push(<a href={props.user.contacts.instagram}><Image roundedCircle={true} className={styles.social} alt="Logo of instagram" src={instagram} /></a>)
-    }
-    if(props.user.contacts.github !== null && props.user.github !== ""){
-        links.push(<a href={props.user.contacts.github}><Image roundedCircle={true} className={styles.social} alt="Logo of instagram" src={github} /></a>)
-    }
-    if(props.user.contacts.facebook !== null && props.user.facebook !== ""){
-        links.push(<a href={props.user.contacts.facebook}><Image roundedCircle={true} className={styles.social} alt="Logo of instagram" src={facebook} /></a>)
+    let onChangeHandler = (e) =>{
+        props.updateImg(e.target.files[0])
     }
 
     if(props.user.photos.large !== null ){
@@ -36,7 +33,7 @@ const Profile = (props) =>{
     else{
         picture = icoM
     }
-
+    
     return(
         <>
         <Container >
@@ -51,13 +48,15 @@ const Profile = (props) =>{
                         <div className={styles.parent}>
 
                             <div>
-                                {props.user.fullName}<br />
-
-                                {"About job: " + props.user.lookingForAJob} <br />
-                                {"bio: "} <Status id={props.user.userId} getStatus={props.getStatus} you={props.you} updateStatus={props.updateStatus} text={props.status} /> <br />
-
+                                
+                                {editMode? <ProfileForm stopEditMod={toggleEditMode} {...props} />: <ProfileText {...props} />}
+                               
+                               
+                               {props.you && !editMode ?  <button onClick={toggleEditMode} >edit profile</button>: null}                 
+                               
+                                
                                 <div className={styles.secondParent}>
-                                    {links}
+                                    {editMode? null:<SocialLinks user={props.user} />}
                                 </div>
                             </div>
                         </div>

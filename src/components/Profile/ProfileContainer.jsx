@@ -4,7 +4,7 @@ import w from "./Profile.module.css"
 import Profile from "./Profile";
 
 import { connect } from "react-redux";
-import { getProfile, getStatus} from '../../redux/actionCreators';
+import { getProfile, getStatus, updateProfile} from '../../redux/actionCreators';
 
 import Error from "../common/Error/Error";
 import {
@@ -75,7 +75,7 @@ class ProfileClass extends React.Component {
           return (
       <div className={w.content}>
         {you? <div>it`s you</div>:<div>it`s not your profile</div>}
-        <ProfileSuper you={you} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
+        <ProfileSuper you={you} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
           <MyPostsContainer />
        
       </div>)
@@ -109,6 +109,9 @@ let mapDispatchToProps = (dispatch) =>{
     },
     updateImg:(img)=>{
       dispatch(updateProfileImg(img))
+    },
+    updateProfile:(profile)=>{
+      dispatch(updateProfile(profile))
     }
   })
 }

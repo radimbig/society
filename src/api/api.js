@@ -64,6 +64,9 @@ export const profileAPI = {
             console.log(res)
             return(res.data)
         })
+    },
+    updateProfile(props){
+        return instance.put(`/profile`, props)
     }
     
 }

@@ -320,3 +320,15 @@ export const updateProfileImg = (img) =>{
    dispatch(setProfileFetchingActionCreator(false))
   }
 }
+
+
+export const updateProfile = (profile) =>{
+  return async (dispatch)=>{
+    dispatch(setProfileFetchingActionCreator(true))
+    let response = await profileAPI.updateProfile(profile)
+    if(response.data.resultCode === 0){
+      dispatch(getProfile(profile.userId))
+    }
+    dispatch(setProfileFetchingActionCreator(false))
+  }
+}

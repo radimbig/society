@@ -49,7 +49,7 @@ const LoginForm = (props) =>{
           <Form >
             <h5>email</h5>
            
-            <Field  className={errors.email && touched.email ? s.errorField : null} name="email" /> 
+            <Field   className={errors.email && touched.email ? s.errorField : null} name="email" /> 
            
             {errors.email && touched.email ?(<span> {errors.email}</span>):null} 
             {isSubmitting && isValid ?(<span>✔️</span>):null} 
