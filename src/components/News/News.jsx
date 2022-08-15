@@ -4,7 +4,9 @@ import React from "react";
 
 
 const News = (props) => {
-    return(<>Here`s news</>)
+    return (<div>
+    </div>)
+
     
 }
 

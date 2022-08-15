@@ -1,6 +1,6 @@
 import React from "react";
 import * as yup from 'yup';
-import Button from 'react-bootstrap/Button';
+
 import s from "./Login.module.css"
 import { Formik, Form, Field } from 'formik';
 
@@ -63,7 +63,7 @@ const LoginForm = (props) =>{
             <Field type="checkbox" name="rememberMe" />
             <span className={s.loginButton}>
               
-            <Button disabled={errors.email || errors.password || !touched.email || !touched.password ? true:false} variant="success" type="submit" >Login</Button>
+            <button disabled={errors.email || errors.password || !touched.email || !touched.password ? true:false} variant="success" type="submit" >Login</button>
             {props.errors !== false ? <div>{props.errors}</div>:null}
             {props.errors === "Our bot thinks that you bot..." ? <div>
               <img alt="captcha img"  src={props.captcha} /> <br />

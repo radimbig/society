@@ -1,4 +1,5 @@
 import { userAPI, authAPI, profileAPI } from "../api/api";
+import { message } from 'antd';
 import Debagger from "../components/debagger/Debbager";
 const TEMP_POST = "TEMP_POST";
 const ADD_POST = "ADD_POST";
@@ -23,7 +24,7 @@ const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
 const SET_PROFILE_ERROR = "SET_PROFILE_ERROR"
 
-export const tempPostActionCreator = (b) => {
+export const tempPostActionCreator =  (b) => {
     return {
       type: TEMP_POST,
       text: b,
@@ -286,19 +287,22 @@ export const loginMe = (email, password, rememberMe,captcha)=>{
     dispatch(setAuthFetchingActionCreator(true))
     authAPI.login(email, password, rememberMe, captcha).then(data=>{
       if(data.resultCode === 0){
+        message.success("Successful login!")
         Debagger("succes", data)
         dispatch(authMe())
       }else{
         Debagger("feiled", data)
       }
       if(data.resultCode === 1){
-        alert("Wrong password or email!")
+
+        message.error("Wrong password or email")
         dispatch(setAuthErrorActionCreator("Wrong password or email, try again"))
+       
       }
       if(data.resultCode === 10){
         
         authAPI.captcha().then(payload=>{
-          
+          message.info("Please write a captcha")
           dispatch(setAuthErrorActionCreator("Our bot thinks that you bot...", payload))
         })
 
@@ -311,6 +315,7 @@ export const LogOut = ()=>{
   return(dispatch)=>{
     authAPI.logout()
     dispatch(setUserDataActionCreator("delete"))
+    message.success("logout...")
   }
 }
 

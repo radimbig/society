@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "antd";
 
 
 
@@ -25,7 +25,7 @@ const Game = (props) => {
             Press A to +1 point to left side <br />
             press L to +1 point to right side <br />
             For playing you have to click to the input
-            <Container>
+           
                 <Row>
                         <Col className="justify-content-center">
                         <input value={""} placeholder="******" onKeyDown={keyDownFun}>
@@ -39,7 +39,7 @@ const Game = (props) => {
                             <span>{count2}</span>
                         </Col>
                 </Row>
-            </Container>
+           
         </div>
     )
 }

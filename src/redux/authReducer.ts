@@ -2,9 +2,25 @@ const SET_USER_DATA = "SET_USER_DATA"
 const SET_USER_PICTURE ="SET_USER_PICTURE"
 const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
 const SET_AUTH_ERROR = "SET_AUTH_ERROR"
-let init = {
+type initType ={
+    isLogin:boolean
+    user:{
+        login:null|string
+        id:null|number
+        email:null|string
+    },
+    isFetching:boolean
+    errors: boolean|null|string
+    captcha:null|boolean
+}
+
+let init:initType = {
     isLogin:false,
-    user:{},
+    user:{
+        login:null,
+        id:null,
+        email:null
+    },
     isFetching:false,
     errors:false,
     captcha:false

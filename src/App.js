@@ -5,9 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {Routes, Route } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
+import {Row, Col} from 'antd'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -20,18 +18,18 @@ import Game from "./components/Game/Game";
 const App = (props) => {
  
   return (
-      <>
-  <Container fluid>
-    <Row >
-      <Col className="header" xs={12}>
+    
+  <>
+    <Row  >
+      <Col className="header" span={24}>
       <HeaderContainer />
       </Col>
     </Row>
-    <Row>
-      <Col sm={12} className="navBar" lg={1} xs={1}>
+    <Row className="g-0">
+      <Col span={1} className="navBar" >
       <Navbar data={props.data.sidebarPage} />
       </Col>
-      <Col  lg={11} className="content"  sm={12} xs={11}>
+      <Col  span={23} className="content"  >
       <Routes>
           <Route path="/" element={<ProfileContainer  />} />
           <Route path="/profile"   element={<ProfileContainer  />} >
@@ -54,8 +52,8 @@ const App = (props) => {
         </Routes>
       </Col>
     </Row>
-  </Container>
-      </>
+  </>
+     
   );
 };
 

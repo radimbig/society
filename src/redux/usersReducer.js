@@ -7,37 +7,9 @@ const SET_PAGES_COUNT = "SET_PAGES_COUNT"
 const SET_COUNT = "SET_COUNT"
 const SET_FETCH = "SET_FETCH"
 const SET_TEMP_PAGE = "SET_TEMP_PAGE"
+
 let initState = {
-  users: [
-    // {
-    //   id: 1,
-    //   followed: true,
-    //   sex: true,
-    //   name: "Radim",
-    //   age: 17,
-    //   bio: "I like react",
-    //   location: { city: "Ukraine", country: "Poltava" },
-    //   profileImg: "",
-    // },
-    // {
-    //   id: 2,
-    //   followed: false,
-    //   sex: true,
-    //   name: "Vadim",
-    //   age: 45,
-    //   bio: "I like c#",
-    //   location: { city: "Ukraine", country: "Poltava", profileImg: "" },
-    // },
-    // {
-    //   id: 3,
-    //   followed: true,
-    //   sex: false,
-    //   name: "Eva",
-    //   age: 25,
-    //   bio: "i`m so pretty!",
-    //   location: { city: "Russia", country: "Moscow", profileImg: "" },
-    // },
-  ],
+  users: [],
   
   pagesCount:3,
   currentPage:1,

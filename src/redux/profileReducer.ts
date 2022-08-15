@@ -5,10 +5,46 @@ const SET_PROFILE_FETCHING = "SET_PROFILE_FETCHING"
 const SET_STATUS = "SET_STATUS"
 const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
 const SET_PROFILE_ERROR = "SET_PROFILE_ERROR"
-let initializationState = {
+
+type PostType = {
+  id:number,
+  likes:number,
+  text:string
+}
+type photosType={
+  small:string
+  large:string
+}
+
+type initializationStateType ={
   currentProfile:{
-    id:"1",
+    id:number,
+    fullname:string
+    surname:string
+    image:string,
+    lookingForJob:boolean,
+    job:string,
+    bio:string,
+    country:string,
+    age:number,
+    instagram:string,
+    facebook:string,
+    github:string
+  },
+  postsObj: Array<PostType>, 
+  tempPost:string,
+  isFetching:boolean
+  error:boolean
+  errorMes:boolean|null
+  photos:photosType
+}
+
+
+let initializationState:initializationStateType = {
+  currentProfile:{
+    id:1,
     fullname:"Radim",
+    lookingForJob:false,
     surname:"Voronianskyi",
     image:"https://paintbynumbersforsale.com/wp-content/uploads/2021/11/aesthetic-Capybara-paint-by-numbers-247x296.jpg",
     job:"I`m loking for job as react developer!",
@@ -26,6 +62,10 @@ let initializationState = {
     { id: 3, likes: 89, text: "kruchu binance" },
     { id: 4, likes: 22, text: "bebromentr" },
   ],
+  photos:{
+    small:"",
+    large:""
+  },
   tempPost: "Radim",
   isFetching:true,
   error:false,
@@ -33,8 +73,6 @@ let initializationState = {
 };
 
 const profileReducer = (state = initializationState, action) => {
-
-
   switch (action.type) {
     case ADD_POST:
       let NewPost = {

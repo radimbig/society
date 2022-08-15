@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import authReduser from "./authReducer";
-import dialogsReducer from "./dialogReducer";
-import profileReducer from "./profileReducer";
-import sidebarReducer from "./sidebarReducer";
-import usersReduser from "./usersReducer"
+import authReduser from "./authReducer.ts";
+import dialogsReducer from "./dialogReducer.ts";
+import profileReducer from "./profileReducer.ts";
+import sidebarReducer from "./sidebarReducer.ts";
+import usersReduser from "./usersReducer.js"
 import thunk from 'redux-thunk'
 
 const composeEnhancers =

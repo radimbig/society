@@ -1,5 +1,12 @@
-
-let initializationState = {
+type friendType ={
+  id:string,
+  name:string
+  profileLink:string
+}
+type initializationStateType ={
+  bestFriends:Array<friendType>
+}
+let initializationState:initializationStateType = {
     bestFriends: [
       {
         id: "2",

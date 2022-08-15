@@ -3,15 +3,13 @@ import { Outlet } from "react-router-dom";
 import classes from "./Dialogs.module.css";
 import ChatItem from "./ChatItem/ChatItem.jsx"
 import ChatWindow from "./ChatWindow/ChatWindow";
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
+import {Col, Row} from 'antd'
 
 function Dialogs(props){
   let chatitems = props.chats.map((B) => {return(<ChatItem to={""} key={B.id} name={B.name} />)})
   return (
   
-      <Container fluid>
+      <>
         <Row className="justify-content-md-left">
           <Col lg={1} xs={1} md={1} sm={1} className={classes.contacts}>
           {chatitems}
@@ -21,7 +19,7 @@ function Dialogs(props){
           </Col>
         </Row>
         <Outlet />
-      </Container>
+      </>
       
    
   );

@@ -1,23 +1,38 @@
 const TEMP_MESS = "TEMP_MESS"
 const SEND_MESS = "SEND_MESS"
+type dialogType = {
+  id:number
+  name:string
+  profileLink:string
+}
+type MesType ={
+  id:number
+  text:string
+}
+type initializationStateType={
+  chatsData: Array<dialogType>
+  messeages: Array<MesType>
+  temp:string
+}
 
-let initializationState = {
+
+let initializationState:initializationStateType = {
   chatsData: [
-    { id: "1", name: "radim", profileLink: "" },
+    { id: 1, name: "radim", profileLink: "" },
     {
-      id: "2",
+      id: 2,
       name: "vadim",
       profileLink:
         "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico",
     },
     {
-      id: "3",
+      id: 3,
       name: "eva",
       profileLink:
         "https://icon-library.com/images/steam-icon-ico/steam-icon-ico-16.jpg",
     },
     {
-      id: "4",
+      id: 4,
       name: "masha",
       profileLink:
         "https://iconarchive.com/download/i48697/custom-icon-design/pretty-office-2/man.ico",
@@ -30,6 +45,8 @@ let initializationState = {
   ],
   temp: "My message",
 };
+
+
 
 const dialogsReduser = (state = initializationState, action) => {
   switch (action.type) {

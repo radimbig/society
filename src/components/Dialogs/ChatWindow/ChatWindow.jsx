@@ -1,8 +1,7 @@
 import React from "react";
 import { useFormik} from "formik";
 import classes from "./ChatWindow.module.css"
-import { Container } from "react-bootstrap";
-import Row from "react-bootstrap/esm/Row";
+import {Row, Col} from 'antd'
 import * as Yup from 'yup'
 
 const ChatWindow = (props) => {
@@ -20,7 +19,7 @@ const ChatWindow = (props) => {
     let messeages = props.messages.map((b) => { return (<div key={b.id} className={classes.item}>{b.text}</div>) })
     return (
         <>
-            <Container>
+            <>
                 <Row>
                 {messeages}           
                 </Row>
@@ -32,7 +31,7 @@ const ChatWindow = (props) => {
                 {formik.touched.mess && formik.errors.mess ? (<span>{formik.errors.mess}</span>): null }
             </form>
                 </Row>
-            </Container>
+            </>
             
 
         </>

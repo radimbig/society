@@ -50,7 +50,7 @@ class Status extends React.Component{
         return(<span  onDoubleClick={this.toggleEditMode}  > {this.props.text || "Click to add status"} </span>)
        }
        if(this.state.editMode === false & this.props.you === false){
-        return(<span >{this.props.text || "no status"}</span>)
+        return(<span  >{this.props.text || "no status"}</span>)
        }
        if(this.state.editMode === true & this.props.you === true){
         return(  <input autoFocus onKeyDown={this.OnKeyDownFun} onChange={this.onChangeFun} onFocus={this.handleFocus} onBlur={this.toggleEditMode} type="text" value={this.state.text} ></input>)

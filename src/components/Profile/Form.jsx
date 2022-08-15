@@ -1,7 +1,7 @@
 import React from "react";
 import {useFormik, Field} from 'formik'
 import * as yup from 'yup'
-
+import {Button} from 'antd'
 
 
 const ProfileForm = (props) =>{
@@ -44,7 +44,7 @@ const ProfileForm = (props) =>{
                 <input placeholder="your facebook" onChange={formik.handleChange} value={formik.values.contacts.facebook} name="contacts.facebook" />
             </div>
             {!formik.isValid && formik.touched ? <div>{formik.errors.fullName}</div>:null}
-            <button disabled={formik.isValid ? false:true} type="submit">Submit</button>
+            <Button disabled={formik.isValid ? false:true} onClick={formik.handleSubmit} type="submit">Submit</Button>
         </form>
     </div>
 }

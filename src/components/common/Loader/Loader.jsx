@@ -1,10 +1,10 @@
 import React from "react";
-import Image from "react-bootstrap/esm/Image";
+
 import loader from "../../../assets/preloader/loading.gif"
 
 let Loader = () =>{
     return(
-      <Image alt="loading..." src={loader} />
+      <img alt="loading..." src={loader} />
     )
   }
   
