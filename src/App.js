@@ -1,4 +1,5 @@
 import React from "react";
+import 'antd/dist/antd.css';
 import "./App.css";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";

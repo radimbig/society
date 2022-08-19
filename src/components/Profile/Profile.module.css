@@ -4,10 +4,7 @@
     
   }
 
-.image img{
-  border-radius: 100%;
-  width: 300px;
-}
+
 
 .parent {
   display: grid;
@@ -27,12 +24,10 @@
     grid-row-gap: 0px;
     }
 
-.social{
-  width: 75px;
-  height: 75px;
-  border-radius: 100px;
-}
 
+  .social{
+    margin: 10px;
+    }
 .social:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);

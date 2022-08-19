@@ -288,6 +288,7 @@ export const loginMe = (email, password, rememberMe,captcha)=>{
     authAPI.login(email, password, rememberMe, captcha).then(data=>{
       if(data.resultCode === 0){
         message.success("Successful login!")
+        dispatch(setAuthErrorActionCreator(false))
         Debagger("succes", data)
         dispatch(authMe())
       }else{
@@ -315,6 +316,7 @@ export const LogOut = ()=>{
   return(dispatch)=>{
     authAPI.logout()
     dispatch(setUserDataActionCreator("delete"))
+    dispatch(setAuthErrorActionCreator(false))
     message.success("logout...")
   }
 }

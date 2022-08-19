@@ -4,6 +4,8 @@ import { connect } from 'react-redux/es/exports';
 import Loader from "../common/Loader/Loader";
 import { loginMe } from "../../redux/actionCreators";
 import { Navigate } from "react-router-dom";
+import LoginForm from "./LoginForm";
+import {Row, Col} from 'antd'
 
 class LoginContainer extends React.Component{
 
@@ -15,7 +17,12 @@ class LoginContainer extends React.Component{
        if(this.props.isFetching){
         return(<Loader />)
        }else{
-        return(<Login captcha={this.props.captcha} errors={this.props.errors} login={this.props.login} isLogin={this.props.isLogin} />)
+        return(
+        <>
+        {/* <Login captcha={this.props.captcha} errors={this.props.errors} login={this.props.login} isLogin={this.props.isLogin} /> */}
+            <LoginForm captcha={this.props.captcha} errors={this.props.errors} login={this.props.login} isLogin={this.props.isLogin} />
+        </>
+        )
        }
         
     }
