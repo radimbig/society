@@ -1,11 +1,10 @@
 import React from "react";
-import Login from "./Login";
 import { connect } from 'react-redux/es/exports';
 import Loader from "../common/Loader/Loader";
 import { loginMe } from "../../redux/actionCreators";
 import { Navigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
-import {Row, Col} from 'antd'
+
 
 class LoginContainer extends React.Component{
 

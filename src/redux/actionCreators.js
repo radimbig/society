@@ -327,7 +327,10 @@ export const updateProfileImg = (img) =>{
    let response = await profileAPI.updateProfileImg(img)
    if(response.resultCode === 0){
     dispatch(setProfilePictureActionCreator(response.data))
+    message.success("image updated successfully")
     dispatch(authMe())
+   }else{
+    message.error("something went wrong")
    }
    dispatch(setProfileFetchingActionCreator(false))
   }

@@ -7,8 +7,9 @@ import {Button} from 'antd'
 const ProfileForm = (props) =>{
     let schema = yup.object({
         fullName:yup.string().min(1).max(15, "your full name is very big, max 15").required(),
+      
     })
-    let userCopy = JSON.parse(JSON.stringify(props.user))
+    
     
     let formik = useFormik({
         initialValues:props.user,

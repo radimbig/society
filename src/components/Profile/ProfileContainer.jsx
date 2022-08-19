@@ -72,10 +72,7 @@ class ProfileClass extends React.Component {
     }else{
           return (
       <div className={w.content}>
-        {you? <div>it`s you</div>:<div>it`s not your profile</div>}
-        <Profile you={you} error={this.props.error} errorMes={this.props.errorMes} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />
-          <MyPostsContainer />
-       
+        <Profile you={you} error={this.props.error} errorMes={this.props.errorMes} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />       
       </div>)
     }
 
