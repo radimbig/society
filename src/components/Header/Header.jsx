@@ -3,7 +3,7 @@ import logos from "../../assets/logo/logo.png";
 import classes from "./Header.module.css";
 import defImg from "../../assets/icoM/avaM.png";
 import { Link, Outlet } from "react-router-dom";
-import {Menu, Dropdown, Row, Col, Avatar} from "antd";
+import { Row, Col, Avatar} from "antd";
 import {MenuOutlined} from "@ant-design/icons";
 const Header = (props) => {
   const sizeRules = {
@@ -14,36 +14,7 @@ const Header = (props) => {
       xl: 50,
       xxl:50,
   }
-  const menu = (
-    <Menu
-      items={[
-        {
-          key: "1",
-          label: (
-            <div onClick={props.setProfile(parseInt(props.user.id))} >
-              <Link to={"/profile/" + props.user.id}>My profile</Link>
-            </div>
-          ),
-        },
-        {
-          key: "2",
-          label: (
-            <div>
-              <Link to="/dialogs">Messages</Link>
-            </div>
-          ),
-        },
-        {
-          key: "3",
-          label: (
-            <div onClick={props.logout}>
-               <Link to="/login">Logout</Link>
-            </div>
-          ),
-        },
-      ]}
-    />
-  );
+  
   let linkToImg;
   if (props.user !== undefined) {
     if ((props.isLogin === true) & (props.user.picture !== "default")) {
@@ -80,11 +51,9 @@ const Header = (props) => {
       </Col>
       <Col>
       <div className={classes.login}>
-        <Dropdown arrow overlay={menu} placement="bottomRight">
-        <div>
-          {linkToImg}
-        </div>
-       </Dropdown>
+        <Link onClick={props.logout} to="login">logout</Link>
+      {linkToImg}
+      
       </div>
       </Col>
     </Row>
