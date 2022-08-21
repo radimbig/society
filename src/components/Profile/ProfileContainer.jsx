@@ -5,7 +5,7 @@ import Profile from "./Profile";
 
 import { connect } from "react-redux";
 import { getProfile, getStatus, updateProfile} from '../../redux/actionCreators';
-
+import { Navigate } from "react-router-dom";
 import Error from "../common/Error/Error";
 import {
   useLocation,
@@ -15,7 +15,16 @@ import {
 import Loader from './../common/Loader/Loader';
 import { updateStatus, updateProfileImg } from './../../redux/actionCreators';
 import debagger from "../debagger/Debbager";
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,23 +45,35 @@ function withRouter(Component) {
 }
 
 
+
+
+
+
 class ProfileClass extends React.Component {
   componentDidUpdate(prevProps, prevState){
-    if(prevProps !== this.props){
-      this.setState({})
-      debagger("Profile class", this.props)
+    if(prevProps.router.params.id !== this.props.router.params.id){
+      if(this.props.router.params.id === undefined){
+        this.props.getProfile(this.props.currentUser.id)
+      }else{
+        this.props.getProfile(this.props.router.params.id)
+      }
     }
   }
   state = {
     text:this.props.text
   }
   componentDidMount() {
+   
+
   if(this.props.router.params.id !== undefined){
     this.props.getProfile(this.props.router.params.id)
     this.props.getStatus(this.props.router.params.id)
   }else{
-    this.props.getProfile(24856)
-    this.props.getStatus(24856)
+    if(this.props.isLogin === true){
+      this.props.getProfile(this.props.currentUser.id)
+      this.props.getStatus(this.props.currentUser.id)
+    }
+      
     
   }
   }
@@ -64,6 +85,7 @@ class ProfileClass extends React.Component {
     if(this.props.isFetching === true){
       return(<Loader />)
     }
+
     if(this.props.currentUser.id === this.props.profile.userId){you=true}else{you=false}
 
 

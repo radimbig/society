@@ -15,14 +15,19 @@ type photosType={
   small:string
   large:string
 }
-
+type sosialType = {
+  instagram:string
+  facebook:string
+  github:string
+}
 type initializationStateType ={
   currentProfile:{
     id:number,
     fullname:string
     surname:string
-    image:string,
+    
     lookingForJob:boolean,
+    photos:photosType
     job:string,
     bio:string,
     country:string,
@@ -36,7 +41,7 @@ type initializationStateType ={
   isFetching:boolean
   error:boolean
   errorMes:boolean|null
-  photos:photosType
+  
 }
 
 
@@ -46,7 +51,10 @@ let initializationState:initializationStateType = {
     fullname:"Radim",
     lookingForJob:false,
     surname:"Voronianskyi",
-    image:"https://paintbynumbersforsale.com/wp-content/uploads/2021/11/aesthetic-Capybara-paint-by-numbers-247x296.jpg",
+    photos:{
+      small:"",
+      large:""
+    },
     job:"I`m loking for job as react developer!",
     bio:"I study react!",
     country:"Ukraine",
@@ -62,10 +70,7 @@ let initializationState:initializationStateType = {
     { id: 3, likes: 89, text: "kruchu binance" },
     { id: 4, likes: 22, text: "bebromentr" },
   ],
-  photos:{
-    small:"",
-    large:""
-  },
+
   tempPost: "Radim",
   isFetching:true,
   error:false,

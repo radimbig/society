@@ -9,10 +9,12 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload, Modal } from "antd";
 
 const Profile = (props) => {
+ 
     const [isModalVisible, setIsModalVisible] = useState(false);
     let [editMode, setEditMode] = useState(false);
  let newPicture
   let picture;
+
   useEffect(() => {
     if (props.error === true) {
       setEditMode(true);

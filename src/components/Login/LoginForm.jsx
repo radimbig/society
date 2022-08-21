@@ -19,7 +19,7 @@ const variableItem = (
       },
     ]}
   >
-    <Input></Input>
+    <Input name='captch'></Input>
   </Form.Item>
     </>
 

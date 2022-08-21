@@ -27,12 +27,10 @@ const App = (props) => {
       </Col>
     </Row>
     <Row className="g-0">
-      <Col span={1} className="navBar" >
-      <Navbar data={props.data.sidebarPage} />
-      </Col>
-      <Col  span={23} className="content"  >
+      <Col  span={24} className="content"  >
       <Routes>
           <Route path="/" element={<ProfileContainer  />} />
+          <Route path="/society" element={<LoginContainer />} />
           <Route path="/profile"   element={<ProfileContainer  />} >
             <Route path=":id" element={<ProfileContainer />} />
           </Route>
