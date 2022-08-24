@@ -23,7 +23,7 @@ const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
 const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
 const SET_PROFILE_ERROR = "SET_PROFILE_ERROR"
-
+const key = 'updatable';
 export const tempPostActionCreator =  (b) => {
     return {
       type: TEMP_POST,
@@ -289,7 +289,6 @@ export const loginMe = (email, password, rememberMe,captcha)=>{
       if(data.resultCode === 0){
         message.success("Successful login!")
         dispatch(setAuthErrorActionCreator(false))
-        Debagger("succes", data)
         dispatch(authMe())
       }else{
         Debagger("feiled", data)
@@ -324,13 +323,26 @@ export const LogOut = ()=>{
 export const updateProfileImg = (img) =>{
   return async (dispatch)=>{
     dispatch(setProfileFetchingActionCreator(true))
+    message.loading({
+      content:"Loading...",
+      key,
+      duration:10
+    })
    let response = await profileAPI.updateProfileImg(img)
    if(response.resultCode === 0){
     dispatch(setProfilePictureActionCreator(response.data))
-    message.success("image updated successfully")
+    message.success({
+      content:"image updated successfully",
+      key,
+      duration:3
+    })
     dispatch(authMe())
    }else{
-    message.error("something went wrong")
+    message.error({
+      content:"something went wrong",
+      key,
+      duration:3
+    })
    }
    dispatch(setProfileFetchingActionCreator(false))
   }
@@ -340,11 +352,30 @@ export const updateProfileImg = (img) =>{
 export const updateProfile = (profile) =>{
   return async (dispatch)=>{
     dispatch(setProfileFetchingActionCreator(true))
+    message.loading({
+      key,
+      content:"Loading...",
+      duration:10
+    })
     let response = await profileAPI.updateProfile(profile)
+   
     if(response.data.resultCode === 0){
+      dispatch(setProfileErrorActionCreator(response.data))
       dispatch(getProfile(profile.userId))
+      message.success({
+        key,
+        content:"Successful profile update",
+        duration:3
+      })
+    }else{
+      message.error({
+        key,
+        content:response.data.messages,
+        duration:3
+      })
+      dispatch(setProfileErrorActionCreator(response.data))
     }
-    dispatch(setProfileErrorActionCreator(response.data))
+    
     dispatch(setProfileFetchingActionCreator(false))
   }
 }

@@ -4,7 +4,7 @@ import w from "./Profile.module.css"
 import Profile from "./Profile";
 
 import { connect } from "react-redux";
-import { getProfile, getStatus, updateProfile} from '../../redux/actionCreators';
+import { getProfile, getStatus, updateProfile, setProfileErrorActionCreator} from '../../redux/actionCreators';
 import { Navigate } from "react-router-dom";
 import Error from "../common/Error/Error";
 import {
@@ -77,7 +77,9 @@ class ProfileClass extends React.Component {
     
   }
   }
-  
+  componentWillUnmount(){
+    this.props.clearError()
+  }
   render() {
     
     let you
@@ -94,7 +96,7 @@ class ProfileClass extends React.Component {
     }else{
           return (
       <div className={w.content}>
-        <Profile you={you} error={this.props.error} errorMes={this.props.errorMes} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />       
+        <Profile clearError={this.props.clearError} you={you} error={this.props.error} errorMes={this.props.errorMes} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />       
       </div>)
     }
 
@@ -131,6 +133,9 @@ let mapDispatchToProps = (dispatch) =>{
     },
     updateProfile:(profile)=>{
       dispatch(updateProfile(profile))
+    },
+    clearError:()=>{
+      dispatch(setProfileErrorActionCreator({resultCode:0}))
     }
   })
 }

@@ -40,7 +40,7 @@ type initializationStateType ={
   tempPost:string,
   isFetching:boolean
   error:boolean
-  errorMes:boolean|null
+  errorMes:boolean|Array<String>|null
   
 }
 
@@ -74,7 +74,7 @@ let initializationState:initializationStateType = {
   tempPost: "Radim",
   isFetching:true,
   error:false,
-  errorMes:null
+  errorMes:[]
 };
 
 const profileReducer = (state = initializationState, action) => {
@@ -119,18 +119,17 @@ const profileReducer = (state = initializationState, action) => {
         }}
       }
     case SET_PROFILE_ERROR:
-      
       if(action.error.resultCode === 0){
         return({
           ...state, 
           error:false,
-          errorMes:null
+          errorMes:[]
         })
       }else{
         return({
           ...state,
           error:true,
-          errorMes:action.error.messages[0]
+          errorMes:action.error.messages
         })
       }
     default:

@@ -6,12 +6,13 @@ import { Navigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 
+
 class LoginContainer extends React.Component{
 
 
     render(){
         if(this.props.isLogin === true){
-            return(<Navigate to="/profile" />)
+            return(<Navigate to={`/profile/${this.props.user.id}`} />)
         }
        if(this.props.isFetching){
         return(<Loader />)
@@ -32,7 +33,8 @@ let mapStateToProps = (state)=>{
         isLogin:state.authReduser.isLogin,
         isFetching:state.authReduser.isFetching,
         errors:state.authReduser.errors,
-        captcha:state.authReduser.captcha
+        captcha:state.authReduser.captcha,
+        user:state.authReduser.user
     })
 }
 let mapDispatchToProps = (dispatch)=>{
