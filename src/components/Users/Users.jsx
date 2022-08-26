@@ -50,7 +50,7 @@ const Users = (props) => {
       };
     }
     return (
-      <div key={M.id} className={styles.user}>
+      <div style={props.user.theme ? {backgroundColor:"#120338"} :{backgroundColor:"#f759ab"}} key={M.id} className={styles.user}>
 
         <div className={styles.first}>
           <Link to={"/profile/" + M.id}>
@@ -63,7 +63,7 @@ const Users = (props) => {
           {M.name}
         </div>
         <div className={styles.second}>{M.bio}</div>
-        <button disabled={dis} className={styles.button} onClick={tempCallBack}>
+        <button   disabled={dis} className={styles.button} onClick={tempCallBack}>
           {temp}
         </button>
       </div>

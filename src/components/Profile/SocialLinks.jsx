@@ -29,13 +29,13 @@ size={{
 const SocialLinks = (props) =>{
     let links = []
     
-    if(props.user.contacts.instagram !== null && props.user.contacts.instagram !== "" ){
+    if(props.user.contacts.instagram !== null && props.user.contacts.instagram !== "" && props.user.contacts.instagram !== "https://instagram.com/" ){
         links.push(<a rel="noreferrer" key={1} target="_blank" href={props.user.contacts.instagram}><Avatar size={size}  className={styles.social}   alt="Logo of instagram" src={instagram} /></a>)
     }
-    if(props.user.contacts.github !== null && props.user.contacts.github !== "" ){
+    if(props.user.contacts.github !== null && props.user.contacts.github !== "" && props.user.contacts.github !== "https://github.com/" ){
         links.push(<a rel="noreferrer" key={2} target="_blank" href={props.user.contacts.github}><Avatar size={size}  className={styles.social}  alt="Logo of instagram" src={github} /></a>)
     }
-    if(props.user.contacts.facebook !== null && props.user.contacts.facebook !== ""){
+    if(props.user.contacts.facebook !== null && props.user.contacts.facebook !== "" && props.user.contacts.facebook !== "https://facebook.com/"){
         links.push(<a rel="noreferrer" key={3} target="_blank" href={props.user.contacts.facebook}><Avatar size={size}  className={styles.social}   alt="Logo of instagram" src={facebook} /></a>)
     }
 

@@ -2,13 +2,16 @@
 .elementik{
   width: 50px;
 }
-.navBar{
-  background-color: rgb(93, 205, 172);
-}
+
 .content{
-  background-color: rgb(185, 192, 182);
+height: 100%;
 }
 
 .header{
-  background-color: greenyellow;
+  border-bottom: 2px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-style: groove;
+  border-color: gray;
 }

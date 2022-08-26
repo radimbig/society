@@ -21,11 +21,46 @@ const { Option } = Select;
     marginRight:"10px"
   }
  
+  let UserCopy = JSON.parse(JSON.stringify(props.user))
+  if(UserCopy.contacts.github !== null){
+    UserCopy = {
+      ...UserCopy,
+      contacts:{...UserCopy.contacts,
+      github:UserCopy.contacts.github.slice(19)
+      }
+    }
+  }
+  if(UserCopy.contacts.instagram !== null){
+    UserCopy = {
+      ...UserCopy,
+      contacts:{...UserCopy.contacts,
+      instagram:UserCopy.contacts.instagram.slice(22)
+      }
+    }
+  }
+  if(UserCopy.contacts.facebook !== null){
+    UserCopy = {
+      ...UserCopy,
+      contacts:{...UserCopy.contacts,
+      facebook:UserCopy.contacts.facebook.slice(21)
+      }
+    }
+  }
+
+
   let formik = useFormik({
-    initialValues: props.user,
+    initialValues: UserCopy,
     onSubmit: (values) => {
       props.stopEditMod();
-      props.updateProfile(values);
+      console.log(values)
+      
+      props.updateProfile({...values,
+        contacts:{
+          github:`https://github.com/${values.contacts.github}`,
+          instagram:`https://instagram.com/${values.contacts.instagram}`,
+          facebook:`https://facebook.com/${values.contacts.facebook}`
+        }
+      });
     },
     validationSchema: schema,
   });
@@ -73,6 +108,7 @@ const { Option } = Select;
         </div>
         <div style={style}>
           <Input
+            addonBefore="https://github.com/"
            status={props.errorMes.includes("Invalid url format (Contacts->Github)") ? "error" : null}
             suffix={<GithubOutlined />}
             placeholder="your github"
@@ -83,6 +119,7 @@ const { Option } = Select;
         </div>
         <div style={style}>
           <Input
+          addonBefore="https://instagram.com/"
           status={props.errorMes.includes("Invalid url format (Contacts->Instagram)") ? "error" : null}
             suffix={<InstagramOutlined />}
             placeholder="your instagram"
@@ -93,6 +130,7 @@ const { Option } = Select;
         </div>
         <div style={style}>
           <Input
+            addonBefore="https://facebook.com/"
           status={props.errorMes.includes("Invalid url format (Contacts->Facebook)") ? "error" : null}
             suffix={<FacebookOutlined />}
             placeholder="your facebook"

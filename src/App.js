@@ -17,7 +17,11 @@ import Game from "./components/Game/Game";
 
 
 const App = (props) => {
- 
+  if(props.data.authReduser.user.theme){
+    document.body.style.backgroundColor = "#002329"
+   }else{
+    document.body.style.backgroundColor = "#87e8de"
+   }
   return (
     
   <>

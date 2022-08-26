@@ -6,7 +6,15 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Row, Col, Avatar, Drawer, message, Button} from "antd";
 import Ava from "./Ava";
 const Header = (props) => {
-  
+  let Theme;
+  if(props.user.theme){
+    console.log("black theme")
+    Theme = classes.blackTheme
+  }else{
+    console.log("white theme")
+    Theme = classes.whiteTheme
+  }
+
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
   let closeMenu = () =>{
@@ -75,7 +83,7 @@ const Header = (props) => {
     linkToImg = null;
   }
   return (
-    <>
+    <div style={props.user.theme? {backgroundColor:"#434343"}:{backgroundColor:"white"}}>
     <Row justify="space-between">
       <Col>
       <Avatar src={logos} onClick={()=>{setVisible(true)}}  size={sizeRules} /> <br />
@@ -100,7 +108,7 @@ const Header = (props) => {
        </Drawer>
       <Outlet />
   
-    </>
+    </div>
 
   );
 };

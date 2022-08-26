@@ -22,7 +22,8 @@ import PureUsers from "./Users";
     usersCount: state.usersPage.usersCount,
     pagesCount:state.usersPage.pagesCount,
     isFetching:state.usersPage.isFetching,
-    isLogin:state.authReduser.isLogin
+    isLogin:state.authReduser.isLogin,
+    user:state.authReduser.user
   })
   let mapDispatchToProps = (dispatch) =>{
       return({
@@ -55,7 +56,7 @@ import PureUsers from "./Users";
       
       
       <PureUsers 
-
+      user={this.props.user}
       onChange={this.props.onchange}
       temp={this.props.temp}
       isFetching={this.props.isFetching}

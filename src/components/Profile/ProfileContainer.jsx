@@ -63,8 +63,8 @@ class ProfileClass extends React.Component {
     text:this.props.text
   }
   componentDidMount() {
-   
 
+  
   if(this.props.router.params.id !== undefined){
     this.props.getProfile(this.props.router.params.id)
     this.props.getStatus(this.props.router.params.id)
@@ -95,7 +95,7 @@ class ProfileClass extends React.Component {
       return(<Error text="Profile Not Found" />)
     }else{
           return (
-      <div className={w.content}>
+      <div style={this.props.currentUser.theme? {backgroundColor:"#002329", color:"white"} :{backgroundColor:"#87e8de"}}>
         <Profile clearError={this.props.clearError} you={you} error={this.props.error} errorMes={this.props.errorMes} updateProfile={this.props.updateProfile} owner={this.props.currentUser} updateImg={this.props.updateImg} getStatus={this.props.getStatus} status={this.props.status}  updateStatus={this.props.updateStatus} isLogin={this.props.isLogin} user={this.props.profile} />       
       </div>)
     }

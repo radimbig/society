@@ -23,7 +23,17 @@ const SET_AUTH_FETCHING = "SET_AUTH_FETCHING"
 const SET_AUTH_ERROR = "SET_AUTH_ERROR"
 const SET_PROFILE_PICTURE = "SET_PROFILE_PICTURE"
 const SET_PROFILE_ERROR = "SET_PROFILE_ERROR"
+const SET_THEME = "SET_THEME"
 const key = 'updatable';
+
+
+export const setThemeActionCreator = (theme) => {
+  return({
+    type: SET_THEME,
+    theme
+  })
+}
+
 export const tempPostActionCreator =  (b) => {
     return {
       type: TEMP_POST,
