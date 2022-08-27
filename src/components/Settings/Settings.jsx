@@ -6,7 +6,7 @@ const Settings = (props) =>{
 
     return(
         <div>
-            <span>Dark theme</span>
+            <span style={props.user.theme? {color:"white"}:{color:"black"}}>Dark theme</span>
             <Switch defaultChecked={props.user.theme} onChange={(e)=>{props.changeTheme(e); 
             if(e){
                 document.body.style.backgroundColor = "#002329"

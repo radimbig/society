@@ -79,7 +79,7 @@ const Users = (props) => {
     return (<div className={styles.main}>
 
       <Pagenator {...props} />
-      <h5>You on page {props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</h5>
+      <span style={props.user.theme ? {color:"white"}:{color:"black"}}>You on page {props.currentPage} <br />all pages count:{props.pagesCount} <br /> all users count: {props.usersCount}</span>
       {users}
       <Outlet />
     </div>)

@@ -52,7 +52,7 @@ const { Option } = Select;
     initialValues: UserCopy,
     onSubmit: (values) => {
       props.stopEditMod();
-      console.log(values)
+      
       
       props.updateProfile({...values,
         contacts:{
@@ -69,6 +69,7 @@ const { Option } = Select;
       <form onSubmit={formik.handleSubmit}>
         <div style={style}>
           <Input
+            style={props.owner.theme? {backgroundColor:"#1f1f1f", color:"whitesmoke"}:{}}
             onChange={formik.handleChange}
             value={formik.values.fullName}
             name="fullName"
@@ -89,6 +90,7 @@ const { Option } = Select;
           </Select>
           <div style={style}>
             <Input
+             style={props.owner.theme? {backgroundColor:"#1f1f1f", color:"whitesmoke"}:{}}
               disabled={!formik.values.lookingForAJob}
               placeholder="your job description"
               onChange={formik.handleChange}
@@ -100,6 +102,7 @@ const { Option } = Select;
         <div style={style}>
         
           <Input
+           style={props.owner.theme? {backgroundColor:"#1f1f1f", color:"whitesmoke"}:{}}
             placeholder="something about you"
             onChange={formik.handleChange}
             id="aboutMe"
@@ -108,6 +111,7 @@ const { Option } = Select;
         </div>
         <div style={style}>
           <Input
+           
             addonBefore="https://github.com/"
            status={props.errorMes.includes("Invalid url format (Contacts->Github)") ? "error" : null}
             suffix={<GithubOutlined />}
@@ -140,7 +144,7 @@ const { Option } = Select;
           />
         </div>  
         <Button
-
+          ghost={props.owner.theme}
           style={{ width: "100%", marginTop:"10px" }}
           disabled={formik.isValid ? false : true}
           onClick={formik.handleSubmit}
@@ -148,6 +152,7 @@ const { Option } = Select;
         >
           Submit
         </Button>
+        
       </form>
     </div>
   );

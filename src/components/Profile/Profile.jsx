@@ -70,15 +70,34 @@ const Profile = (props) => {
             />
           </div>
           <Modal
+          bodyStyle={props.owner.theme ? {backgroundColor:"#00474f"}:{}}
+          footer={false}
             visible={isModalVisible}
             onOk={okHandler}
             onCancel={() => {
               setIsModalVisible(false);
             }}
           >
-            <Upload accept=".jpg, .png" maxCount={1} onChange={onChangeHandler}>
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
+            <Row>
+              <Upload 
+              listType='picture'
+              onDrop={onChangeHandler}
+              style={{backgroundColor:"black"}}
+                accept=".jpg, .png"
+                maxCount={1}
+                onChange={onChangeHandler}
+              >
+                <Button   icon={<UploadOutlined />}>Click to Upload</Button>
+              </Upload>
+            </Row>
+            <Row justify='end'>
+                <Button onClick={() => {
+              setIsModalVisible(false);
+            }} ghost={props.owner.theme}>Cancel</Button>
+                <Button
+                onClick={okHandler}
+                ghost={props.owner.theme}>Ok</Button>
+            </Row>
           </Modal>
         </Col>
         <Col span={12}>
@@ -86,7 +105,9 @@ const Profile = (props) => {
             <div>
               <ProfileText {...props} />
               {props.you ? (
-                <Button onClick={toggleEditMode}>edit profile</Button>
+                <Button ghost={props.owner.theme} onClick={toggleEditMode}>
+                  edit profile
+                </Button>
               ) : null}
               <div className={styles.secondParent}>
                 <SocialLinks user={props.user} />
@@ -97,6 +118,7 @@ const Profile = (props) => {
       </Row>
       <Row></Row>
       <Modal
+        bodyStyle={props.owner.theme ? {backgroundColor:"#00474f"}:{}}
         footer={null}
         onCancel={() => {
           setEditMode(false);

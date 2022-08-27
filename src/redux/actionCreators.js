@@ -232,13 +232,12 @@ export const unfollow = (userId)=>{
 }
 
 export const getProfile = (id) =>{
-  return (dispatch)=>{
+  return async (dispatch)=>{
     dispatch(setProfileFetchingActionCreator(true))
-    profileAPI.getProfile(id).then(res=>{
+     let res = await profileAPI.getProfile(id)
       dispatch(setProfileActionCreator(res))
-      dispatch(getStatus(id))
       dispatch(setProfileFetchingActionCreator(false))
-    })
+  
   }
 }
 

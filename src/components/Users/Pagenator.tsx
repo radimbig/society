@@ -29,9 +29,7 @@ const Pagenator: React.FC<Props> = ({pagesCount, setPage, temp, onChange}) =>{
         }
       }
     let karusel = <div  onDoubleClick={()=>{if(editMode === false){setEditMode(true)}else{setEditMode(false)}}}>
-    <span className={styles.smalNum}>{parseInt(temp) -1 === 0 ?  null:parseInt(temp) - 1 }</span> 
-      <span className={styles.mainNub}>{parseInt(temp)}</span>
-    <span className={styles.smalNum}>{parseInt(temp) === pagesCount ? null : parseInt(temp) + 1 }</span>
+
   </div>
     return(
         <>

@@ -6,14 +6,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Row, Col, Avatar, Drawer, message, Button} from "antd";
 import Ava from "./Ava";
 const Header = (props) => {
-  let Theme;
-  if(props.user.theme){
-    console.log("black theme")
-    Theme = classes.blackTheme
-  }else{
-    console.log("white theme")
-    Theme = classes.whiteTheme
-  }
+
+
 
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
@@ -43,7 +37,7 @@ const Header = (props) => {
       </div>)
     }
     
-    return(<div key={a.key}><Link  onClick={closeMenu} to={a.url}>{a.title}</Link></div>)})
+    return(<div key={a.key}><Link style={props.user.theme? {color:"white"}:{}} onClick={closeMenu} to={a.url}>{a.title}</Link></div>)})
   const sizeRules = {
       xs: 50,
       sm: 50,
@@ -91,13 +85,15 @@ const Header = (props) => {
       </Col>
       <Col>
       <div className={classes.login}>
-        {props.isLogin ? (<Ava id={props.user.id} logout={props.logout}>{linkToImg}</Ava>):<Button type="primary" onClick={()=>{navigate("/login")}} >Login</Button>}
+        {props.isLogin ? (<Ava user={props.user} id={props.user.id} logout={props.logout}>{linkToImg}</Ava>):<Button type="primary" onClick={()=>{navigate("/login")}} >Login</Button>}
       
       
       </div>
       </Col>
     </Row>
        <Drawer
+      headerStyle={props.user.theme? {backgroundColor:"#595959"}:{}}
+      bodyStyle={props.user.theme? {backgroundColor:"#1f1f1f"}:{}}
        title="Menu"
        placement="left"
        visible={visible}
@@ -114,3 +110,10 @@ const Header = (props) => {
 };
 
 export default Header;
+
+
+/*
+       headerStyle={{backgroundColor:"#595959"}}
+       bodyStyle={{backgroundColor:"#1f1f1f"}}
+
+*/ 

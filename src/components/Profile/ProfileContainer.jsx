@@ -83,7 +83,6 @@ class ProfileClass extends React.Component {
   render() {
     
     let you
-   
     if(this.props.isFetching === true){
       return(<Loader />)
     }
