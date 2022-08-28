@@ -30,7 +30,7 @@ const App = (props) => {
       <HeaderContainer />
       </Col>
     </Row>
-    <Row className="g-0">
+    <Row >
       <Col  span={24} className="content"  >
       <Routes>
           <Route path="/" element={<ProfileContainer  />} />

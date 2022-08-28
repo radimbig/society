@@ -1,14 +1,29 @@
 
+.contact{
 
-.contacts{
-    background-color: rgb(212, 208, 212);
-    text-decoration: none;
-    color: wheat;
+}
+.contact:hover{
+background-color: rgba(0, 0, 0, 25%);
+}
 
+.contactBlack{
+
+}
+.contactBlack:hover{
+    background-color: rgba(255, 255, 255, 25%);
 }
 
 .chat{
     background-color: rgb(130, 89, 137);
     display: flex;
     align-items: left;
+}
+
+.chatWindow{
+    height:calc(100vh - 52px);
+    background-color: green;
+}
+
+.sendMess{
+    align-items:flex-end;
 }

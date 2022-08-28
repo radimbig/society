@@ -57,11 +57,12 @@ export const tempPostActionCreator =  (b) => {
   )
   }
   
-  export const sendMessActionCreator = (text) =>{
+  export const sendMessActionCreator = (text, to) =>{
     return(
       {
         type:SEND_MESS,
-        text
+        text, 
+        to
       }
     )
   }

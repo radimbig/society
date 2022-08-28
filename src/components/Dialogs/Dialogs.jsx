@@ -1,26 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import { Outlet } from "react-router-dom";
 import classes from "./Dialogs.module.css";
-import ChatItem from "./ChatItem/ChatItem.jsx"
-import ChatWindow from "./ChatWindow/ChatWindow";
 import {Col, Row} from 'antd'
+import { useCurrentWidth } from "react-breakpoints-hook";
+import Contacts from "./Contacts/Contacts";
+import ChatWindow from "./ChatWindow/ChatWindow";
 
 function Dialogs(props){
-  let chatitems = props.chats.map((B) => {return(<ChatItem to={""} key={B.id} name={B.name} />)})
-  return (
   
-      <>
-        <Row className="justify-content-md-left">
-          <Col lg={1} xs={1} md={1} sm={1} className={classes.contacts}>
-          {chatitems}
+  const [currentChat, setCurrentChat] = useState(2)
+ const width = useCurrentWidth()
+ 
+  return (
+      <div style={props.user.theme? {height:"100%", }:{backgroundColor:'#54e8ff'}}>
+
+        <Row  justify='space-between'>
+          <Col xs={0} sm={4} >
+            <Contacts theme={props.user.theme} setChat={setCurrentChat} chats={props.chats} />
           </Col>
-          <Col className={classes.chat}>
-          <ChatWindow temp={props.temp}  sendMess={props.sendMess} messages={props.messages} />
+          <Col className={classes.chatWindow} xs={24} sm={20}>
+          <ChatWindow  messages={props.messages} sendMess = {props.sendMess} currentChat={currentChat} />
           </Col>
         </Row>
-        <Outlet />
-      </>
-      
+      </div>
+    
    
   );
 };
