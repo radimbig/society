@@ -15,11 +15,11 @@ function Dialogs(props){
       <div style={props.user.theme? {height:"100%", }:{backgroundColor:'#54e8ff'}}>
 
         <Row  justify='space-between'>
-          <Col xs={0} sm={4} >
+          <Col className={props.user.theme? classes.contacts:classes.contactsB} xs={0} sm={4} >
             <Contacts theme={props.user.theme} setChat={setCurrentChat} chats={props.chats} />
           </Col>
-          <Col className={classes.chatWindow} xs={24} sm={20}>
-          <ChatWindow  messages={props.messages} sendMess = {props.sendMess} currentChat={currentChat} />
+          <Col style={props.user.theme? {backgroundColor:""}:{}} className={classes.chatWindow} xs={24} sm={20}>
+          <ChatWindow user={props.user}  messages={props.messages} sendMess = {props.sendMess} currentChat={currentChat} />
           </Col>
         </Row>
       </div>

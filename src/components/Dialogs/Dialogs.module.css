@@ -1,14 +1,10 @@
 
-.contact{
 
-}
 .contact:hover{
 background-color: rgba(0, 0, 0, 25%);
 }
 
-.contactBlack{
 
-}
 .contactBlack:hover{
     background-color: rgba(255, 255, 255, 25%);
 }
@@ -21,9 +17,25 @@ background-color: rgba(0, 0, 0, 25%);
 
 .chatWindow{
     height:calc(100vh - 52px);
-    background-color: green;
 }
 
 .sendMess{
     align-items:flex-end;
+}
+
+.contacts{
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 5px;
+    border-style: solid;
+    border-color:rgb(152, 152, 152);
+}
+.contactsB{
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 5px;
+    border-style: solid;
+    border-color: rgb(172, 71, 124);
 }

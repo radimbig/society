@@ -12,14 +12,14 @@ let whiteTheme = {marginTop:"15px", marginBottom:"15px", color:"black", padding:
             <Avatar src={e.profileLink} />
           </Col>
           <Col span={12}>
-            <h3 style={props.theme ? {color:"white"}:{color:"black"}}>{e.name}</h3>
+            <h3 style={props.theme ? {color:"white", cursor:'default'}:{color:"black", cursor:'default'}}>{e.name}</h3>
           </Col>
         </Row>
       </div>
     );
   });
 
-  return <div>
+  return <div >
     {dialogs}
   </div>;
 };

@@ -44,14 +44,14 @@ items={[{
 
 
 return(
-<div>
+<div style={{marginRight:"10px" }}>
 <Dropdown
-
+trigger={['click', 'hover']}
 overlay={menu}
 placement="bottomRight"
 arrow={true}
 >
-<div key="divka">
+<div  key="divka">
     {props.children}
 </div>
 </Dropdown>

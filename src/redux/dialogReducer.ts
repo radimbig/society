@@ -54,6 +54,7 @@ let initializationState:initializationStateType = {
     { id: 6, text: "Your welcome!", from:1, to:4 },
     {id:7, text:"How it`s going?", from:1, to:5},
     {id:8, text:"I`m fine! What about meeting?", from:5, to:1},
+    {id:9, text:"bebra sssssssssssssss\nsssssssssssssssss bebra228", from:5, to:1},
   ],
   temp: "My message",
 };
@@ -68,6 +69,11 @@ const dialogsReduser = (state = initializationState, action) => {
         temp: action.text,
       };
     case SEND_MESS:
+      if(action.text.trim().length === 0){
+        return({
+          ...state
+        })
+      }
       let newMess = {
         id: state.messeages.length + 1,
         text: action.text,

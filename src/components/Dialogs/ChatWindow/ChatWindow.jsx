@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import { Row, Col, Input } from "antd";
+import React, { useState} from "react";
+import { Row, Col, Input, Button } from "antd";
 import classes from '../Dialogs.module.css'
-import {SendOutlined} from "@ant-design/icons"
+import s from './ChatWindow.module.css'
+
+
 const ChatWindow = (props) => {
   return (
-    <div>
+    <div style={props.user.theme? {color:"white"}:{}}>
       <Row>
        <Col span={24}>
-       <Messages messages={props.messages} chat={props.currentChat} />
+        <div  className={s.chat} >
+          <Messages theme={props.user.theme} messages={props.messages} chat={props.currentChat} />
+        </div>
        </Col>
       </Row>
       <Row>
-        <SendMessForm sendMess={props.sendMess} for={props.currentChat} />
+        <SendMessForm theme={props.user.theme} sendMess={props.sendMess} for={props.currentChat} />
       </Row>
     </div>
   );
@@ -31,16 +35,17 @@ const Messages = (props) => {
     if (e.from === 1) {
       return (
         <Row key={e.id} justify="end">
-            <Col span={8}>
-             <div style={{textAlign:"end"}}>From Radim:{e.text}</div>
+            <Col  span={24}>
+              <div style={{margin:"20px"}} >
+                <div className={props.theme? s.messageB:s.messsage} style={{textAlign:"end"}}>{e.text}</div>
+              </div>
             </Col>
-         
         </Row>
       );
     } else {
       return (
         <Row key={e.id} justify="start">
-          <div>From {e.from} :{e.text}</div>
+          <div>{e.text}</div>
         </Row>
       );
     }
@@ -49,15 +54,23 @@ const Messages = (props) => {
 };
 
 const SendMessForm = (props) => {
+    const sendMes = ()=>{
+      let masivchik =  Array.from(temp)
+      for(let i = 1; i<2; i++){
+        masivchik.splice(30, 0, "\n ")
+      }
+      console.log(masivchik.join(""))
+      props.sendMess(masivchik.join(""), props.for); 
+      setTemp("")
+    }
     const [temp, setTemp] = useState()
     return(
     <div style={{width:"100%"}} >
-        <Row justify="end">
+        <Row align='bottom' justify="end">
         <Col span={24}>
-        <Input value={temp} onChange={(e)=>{setTemp(e.target.value)}} />
-        </Col>
-        <Col className={classes.sendMess} offset={23} span={1}>
-        <button onClick={()=>{props.sendMess(temp, props.for); setTemp("")}} ><SendOutlined /></button>
+          <div>
+            <Input maxLength={150} rows={5} value={temp}  onPressEnter={sendMes} onChange={(e)=>{setTemp(e.target.value)}} />
+          </div>
         </Col>
         </Row>
        
@@ -67,3 +80,8 @@ const SendMessForm = (props) => {
 };
 
 export default ChatWindow;
+
+
+/*
+<Input.TextArea  size="large"  onPressEnter={()=>{props.sendMess(temp, props.for); setTemp("")}} value={temp} onChange={(e)=>{setTemp(e.target.value)}} />
+*/
