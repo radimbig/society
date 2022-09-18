@@ -1,21 +1,39 @@
 import React, { useState} from "react";
-import { Row, Col, Input, Button } from "antd";
-import classes from '../Dialogs.module.css'
+import { Row, Col, Input, Button, Avatar } from "antd";
+import RollbackOutlined from '@ant-design/icons'
 import s from './ChatWindow.module.css'
-
+import backIco from '../../../assets/back/back.png'
 
 const ChatWindow = (props) => {
   return (
-    <div style={props.user.theme? {color:"white"}:{}}>
+    <div style={props.user.theme ? { color: "white" } : {}}>
       <Row>
-       <Col span={24}>
-        <div  className={s.chat} >
-          <Messages theme={props.user.theme} messages={props.messages} chat={props.currentChat} />
+        <div className={props.user.theme ? s.topBar : s.topBarB}>
+          <Row>
+            <Col xs={2} sm={0}>
+              <img  onClick={()=>{props.setChat(0)}} src={backIco} className={s.backIco} />
+            </Col>
+            <Col xs={22} sm={24}>
+              <Avatar style={{marginLeft:"15px"}} src={props.chats[props.currentChat - 2].profileLink} size={48} />
+            </Col>
+          </Row>
         </div>
-       </Col>
+        <Col span={24}>
+          <div className={s.chat}>
+            <Messages
+              theme={props.user.theme}
+              messages={props.messages}
+              chat={props.currentChat}
+            />
+          </div>
+        </Col>
       </Row>
       <Row>
-        <SendMessForm theme={props.user.theme} sendMess={props.sendMess} for={props.currentChat} />
+        <SendMessForm
+          theme={props.user.theme}
+          sendMess={props.sendMess}
+          for={props.currentChat}
+        />
       </Row>
     </div>
   );
@@ -35,9 +53,9 @@ const Messages = (props) => {
     if (e.from === 1) {
       return (
         <Row key={e.id} justify="end">
-            <Col  span={24}>
-              <div style={{margin:"20px"}} >
-                <div className={props.theme? s.messageB:s.messsage} style={{textAlign:"end"}}>{e.text}</div>
+            <Col>
+              <div >
+                <div className={props.theme? s.messageB:s.message} style={{textAlign:"end"}}>{e.text}</div>
               </div>
             </Col>
         </Row>
@@ -45,7 +63,7 @@ const Messages = (props) => {
     } else {
       return (
         <Row key={e.id} justify="start">
-          <div>{e.text}</div>
+          <div className={props.theme? s.messageB:s.message}>{e.text}</div>
         </Row>
       );
     }
@@ -53,14 +71,16 @@ const Messages = (props) => {
   return <div>{razmetka}</div>;
 };
 
+
+
+
+
+
+
 const SendMessForm = (props) => {
     const sendMes = ()=>{
-      let masivchik =  Array.from(temp)
-      for(let i = 1; i<2; i++){
-        masivchik.splice(30, 0, "\n ")
-      }
-      console.log(masivchik.join(""))
-      props.sendMess(masivchik.join(""), props.for); 
+
+      props.sendMess(temp, props.for); 
       setTemp("")
     }
     const [temp, setTemp] = useState()
