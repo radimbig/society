@@ -50,10 +50,12 @@ const Profile = (props) => {
           <div>
             <Avatar
               onClick={() => {
-                if (isModalVisible) {
-                  setIsModalVisible(false);
-                } else {
-                  setIsModalVisible(true);
+                if (props.you) {
+                  if (isModalVisible) {
+                    setIsModalVisible(false);
+                  } else {
+                    setIsModalVisible(true);
+                  }
                 }
               }}
               className={styles.image}
@@ -70,8 +72,8 @@ const Profile = (props) => {
             />
           </div>
           <Modal
-          bodyStyle={props.owner.theme ? {backgroundColor:"#00474f"}:{}}
-          footer={false}
+            bodyStyle={props.owner.theme ? { backgroundColor: "#00474f" } : {}}
+            footer={false}
             visible={isModalVisible}
             onOk={okHandler}
             onCancel={() => {
@@ -79,24 +81,29 @@ const Profile = (props) => {
             }}
           >
             <Row>
-              <Upload 
-              listType='picture'
-              onDrop={onChangeHandler}
-              style={{backgroundColor:"black"}}
+              <Upload
+                listType="picture"
+                onDrop={onChangeHandler}
+                style={{ backgroundColor: "black" }}
                 accept=".jpg, .png"
                 maxCount={1}
                 onChange={onChangeHandler}
               >
-                <Button   icon={<UploadOutlined />}>Click to Upload</Button>
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
               </Upload>
             </Row>
-            <Row justify='end'>
-                <Button onClick={() => {
-              setIsModalVisible(false);
-            }} ghost={props.owner.theme}>Cancel</Button>
-                <Button
-                onClick={okHandler}
-                ghost={props.owner.theme}>Ok</Button>
+            <Row justify="end">
+              <Button
+                onClick={() => {
+                  setIsModalVisible(false);
+                }}
+                ghost={props.owner.theme}
+              >
+                Cancel
+              </Button>
+              <Button onClick={okHandler} ghost={props.owner.theme}>
+                Ok
+              </Button>
             </Row>
           </Modal>
         </Col>
@@ -118,7 +125,7 @@ const Profile = (props) => {
       </Row>
       <Row></Row>
       <Modal
-        bodyStyle={props.owner.theme ? {backgroundColor:"#00474f"}:{}}
+        bodyStyle={props.owner.theme ? { backgroundColor: "#00474f" } : {}}
         footer={null}
         onCancel={() => {
           setEditMode(false);

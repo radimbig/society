@@ -52,7 +52,7 @@ const { Option } = Select;
     initialValues: UserCopy,
     onSubmit: (values) => {
       props.stopEditMod();
-      
+
       
       props.updateProfile({...values,
         contacts:{
