@@ -13,8 +13,8 @@ const mapStateToProps = (state) => ({
 });
 let mapDispatchToProps = (dispatch) => {
   return {
-    sendMess: (e, to) => {
-      dispatch(sendMessActionCreator(e, to));
+    sendMess: (text, to) => {
+      dispatch(sendMessActionCreator(text, to));
     },
   };
 };
