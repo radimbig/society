@@ -2,38 +2,32 @@ import { message } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 
-
-import loader from "../../../assets/preloader/loading.gif"
-
-class Loader extends React.Component{
-  key = 'updatablee';
-  componentWillUnmount(){
+class Loader extends React.Component {
+  key = "updatablee";
+  componentWillUnmount() {
     message.success({
-      key:this.key,
-      content:" ",
-      duration:1
-    })
+      key: this.key,
+      content: " ",
+      duration: 1,
+    });
   }
-  componentDidMount(){
+  componentDidMount() {
     message.loading({
-      key:this.key,
-      content:"Loading...",
-      duration:10
-    })
+      key: this.key,
+      content: "Loading...",
+      duration: 10,
+    });
   }
 
-  render(){
-    return
+  render() {
+    return;
   }
 }
-  
-const mapStateToProps = (state)=>{
-  return(
-    {
-      theme:state.authReduser.user.theme
-    }
-  )
-}  
 
+const mapStateToProps = (state) => {
+  return {
+    theme: state.authReduser.user.theme,
+  };
+};
 
-export default connect(mapStateToProps)(Loader)
+export default connect(mapStateToProps)(Loader);

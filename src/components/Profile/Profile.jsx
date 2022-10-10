@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.css";
 import icoM from "../../assets/icoM/avaM.png";
-import { Row, Col, Image, Avatar } from "antd";
+import { Row, Col, Avatar } from "antd";
 import SocialLinks from "./SocialLinks";
 import ProfileForm from "./Form";
 import ProfileText from "./ProfileInfo";
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, Upload, Modal, Form } from "antd";
+import { Button, Upload, Modal } from "antd";
 
 const Profile = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);

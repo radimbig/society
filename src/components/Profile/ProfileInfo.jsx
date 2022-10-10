@@ -1,6 +1,5 @@
 import React from "react";
 import icoM from "../../assets/icoM/avaM.png";
-import Status from "./Status/Status";
 
 const ProfileText = (props) => {
   let picture;
@@ -21,7 +20,7 @@ const ProfileText = (props) => {
           {props.user.lookingForAJobDescription} <br />{" "}
         </span>
       ) : null}
-     <div>{props.user.aboutMe}</div>
+      <div>{props.user.aboutMe}</div>
     </>
   );
 };

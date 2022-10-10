@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { setThemeActionCreator } from "../../redux/actionCreators";
 import { Switch } from "antd";
 import { connect } from "react-redux";

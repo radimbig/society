@@ -1,51 +1,45 @@
 import React from "react";
-import { connect } from 'react-redux/es/exports';
-import { authMe, getProfile, LogOut} from '../../redux/actionCreators';
+import { connect } from "react-redux/es/exports";
+import { authMe, getProfile, LogOut } from "../../redux/actionCreators";
 import Header from "./Header";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-
-
 
 class HeaderClass extends React.Component {
-
   componentDidMount() {
-    this.props.authMe()
+    this.props.authMe();
   }
 
   render() {
-
-    return (<Header logout={this.props.logout} setProfile={this.props.getProfile} isLogin={this.props.isLogin} user={this.props.user} />)
+    return (
+      <Header
+        logout={this.props.logout}
+        setProfile={this.props.getProfile}
+        isLogin={this.props.isLogin}
+        user={this.props.user}
+      />
+    );
   }
 }
 
-
-
-
 let mapDispatchToProps = (dispatch) => {
-  return ({
+  return {
     authMe: () => {
-      dispatch(authMe())
+      dispatch(authMe());
     },
-    getProfile:(id)=>{
-      dispatch(getProfile(id))
+    getProfile: (id) => {
+      dispatch(getProfile(id));
     },
-    logout:()=>{
-      dispatch(LogOut())
-    }
-
-  })}
+    logout: () => {
+      dispatch(LogOut());
+    },
+  };
+};
 let mapStateToProps = (state) => {
-  return ({
+  return {
     user: state.authReduser.user,
-    isLogin: state.authReduser.isLogin
-  })
-}
+    isLogin: state.authReduser.isLogin,
+  };
+};
 
-let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderClass)
+let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderClass);
 
-
-export default HeaderContainer
+export default HeaderContainer;

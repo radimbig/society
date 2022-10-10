@@ -1,35 +1,38 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, message } from 'antd';
-import React from 'react';
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form, Input} from "antd";
+import React from "react";
 
 const App = (props) => {
   const onFinish = (values) => {
-    props.login(values.email, values.password, values.rememberMe, values.captcha)
+    props.login(
+      values.email,
+      values.password,
+      values.rememberMe,
+      values.captcha
+    );
   };
 
-
-const variableItem = (
+  const variableItem = (
     <>
-    <img src={props.captcha} />
+      <img src={props.captcha} />
       <Form.Item
-    name="captcha"
-    rules={[
-      {
-        required: true,
-      },
-    ]}
-  >
-    <Input name='captch'></Input>
-  </Form.Item>
+        name="captcha"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input name="captch"></Input>
+      </Form.Item>
     </>
-
-);
+  );
 
   return (
     <Form
-        wrapperCol={{
-            span:5
-        }}
+      wrapperCol={{
+        span: 5,
+      }}
       name="normal_login"
       className="login-form"
       initialValues={{
@@ -41,20 +44,23 @@ const variableItem = (
         name="email"
         rules={[
           {
-            type:"email",
+            type: "email",
             required: true,
-            message: 'Please input correct email adress!',
+            message: "Please input correct email adress!",
           },
         ]}
       >
-        <Input  prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Username"
+        />
       </Form.Item>
       <Form.Item
         name="password"
         rules={[
           {
             required: true,
-            message: 'Please input your Password!',
+            message: "Please input your Password!",
           },
         ]}
       >
@@ -67,7 +73,9 @@ const variableItem = (
       <Form.Item>
         <Form.Item name="rememberMe" valuePropName="checked" noStyle>
           <Checkbox>Remember me</Checkbox>
-          {props.errors === "Our bot thinks that you bot..." ? variableItem:null}
+          {props.errors === "Our bot thinks that you bot..."
+            ? variableItem
+            : null}
         </Form.Item>
 
         <a className="login-form-forgot" href="">

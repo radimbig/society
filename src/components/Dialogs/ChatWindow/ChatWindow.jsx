@@ -1,8 +1,7 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Row, Col, Input, Button, Avatar } from "antd";
-import RollbackOutlined from '@ant-design/icons'
-import s from './ChatWindow.module.css'
-import backIco from '../../../assets/back/back.png'
+import s from "./ChatWindow.module.css";
+import backIco from "../../../assets/back/back.png";
 
 const ChatWindow = (props) => {
   return (
@@ -11,10 +10,20 @@ const ChatWindow = (props) => {
         <div className={props.user.theme ? s.topBar : s.topBarB}>
           <Row>
             <Col xs={2} sm={0}>
-              <img  onClick={()=>{props.setChat(0)}} src={backIco} className={s.backIco} />
+              <img
+                onClick={() => {
+                  props.setChat(0);
+                }}
+                src={backIco}
+                className={s.backIco}
+              />
             </Col>
             <Col xs={22} sm={24}>
-              <Avatar style={{marginLeft:"15px"}} src={props.chats[props.currentChat - 2].profileLink} size={48} />
+              <Avatar
+                style={{ marginLeft: "15px" }}
+                src={props.chats[props.currentChat - 2].profileLink}
+                size={48}
+              />
             </Col>
           </Row>
         </div>
@@ -53,17 +62,22 @@ const Messages = (props) => {
     if (e.from === 1) {
       return (
         <Row key={e.id} justify="end">
-            <Col>
-              <div >
-                <div className={props.theme? s.messageB:s.message} style={{textAlign:"end"}}>{e.text}</div>
+          <Col>
+            <div>
+              <div
+                className={props.theme ? s.messageB : s.message}
+                style={{ textAlign: "end" }}
+              >
+                {e.text}
               </div>
-            </Col>
+            </div>
+          </Col>
         </Row>
       );
     } else {
       return (
         <Row key={e.id} justify="start">
-          <div className={props.theme? s.messageB:s.message}>{e.text}</div>
+          <div className={props.theme ? s.messageB : s.message}>{e.text}</div>
         </Row>
       );
     }
@@ -71,36 +85,34 @@ const Messages = (props) => {
   return <div>{razmetka}</div>;
 };
 
-
-
-
-
-
-
 const SendMessForm = (props) => {
-    const sendMes = ()=>{
-
-      props.sendMess(temp, props.for); 
-      setTemp("")
-    }
-    const [temp, setTemp] = useState()
-    return(
-    <div style={{width:"100%"}} >
-        <Row align='bottom' justify="end">
+  const sendMes = () => {
+    props.sendMess(temp, props.for);
+    setTemp("");
+  };
+  const [temp, setTemp] = useState();
+  return (
+    <div style={{ width: "100%" }}>
+      <Row align="bottom" justify="end">
         <Col span={24}>
           <div>
-            <Input maxLength={150} rows={5} value={temp}  onPressEnter={sendMes} onChange={(e)=>{setTemp(e.target.value)}} />
+            <Input
+              maxLength={150}
+              rows={5}
+              value={temp}
+              onPressEnter={sendMes}
+              onChange={(e) => {
+                setTemp(e.target.value);
+              }}
+            />
           </div>
         </Col>
-        </Row>
-       
+      </Row>
     </div>
-       
-    )
+  );
 };
 
 export default ChatWindow;
-
 
 /*
 <Input.TextArea  size="large"  onPressEnter={()=>{props.sendMess(temp, props.for); setTemp("")}} value={temp} onChange={(e)=>{setTemp(e.target.value)}} />
