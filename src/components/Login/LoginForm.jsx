@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input} from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import React from "react";
 
 const App = (props) => {

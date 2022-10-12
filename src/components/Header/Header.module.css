@@ -7,7 +7,7 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   text-align: left;
-  
+
 }
 
 .header img {
@@ -16,25 +16,26 @@
 }
 
 
-.login{
+.login {
   display: flex;
   align-items: right;
-justify-content: right;
+  justify-content: right;
 }
 
-.logout{
+.logout {
   cursor: pointer;
-  color:blue
+  color: blue
 }
 
 .disableLink {
-  color:rgb(21, 48, 83)
+  color: rgb(21, 48, 83)
 }
 
 
-.blackTheme{
+.blackTheme {
   background-color: rgb(rgb(23, 39, 47), green, blue);
 }
-.whiteTheme{
+
+.whiteTheme {
   background-color: rgb(230, 209, 209);
 }

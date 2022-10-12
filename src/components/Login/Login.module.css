@@ -1,9 +1,9 @@
-.loginButton{
+.loginButton {
     padding-left: 5px;
 }
 
 
-.errorField{
+.errorField {
     border-style: solid;
     border-radius: 2px;
     border-color: red;

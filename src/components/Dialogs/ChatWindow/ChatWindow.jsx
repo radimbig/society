@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Input, Button, Avatar } from "antd";
+import { Row, Col, Input, Avatar } from "antd";
 import s from "./ChatWindow.module.css";
 import backIco from "../../../assets/back/back.png";
 
@@ -50,6 +50,7 @@ const ChatWindow = (props) => {
 
 const Messages = (props) => {
   const mess = props.messages.filter((e) => {
+    // e = element
     if (e.from === 1 && e.to === props.chat) {
       return e;
     }
@@ -59,6 +60,7 @@ const Messages = (props) => {
   });
 
   const razmetka = mess.map((e) => {
+    // messages maping
     if (e.from === 1) {
       return (
         <Row key={e.id} justify="end">
@@ -90,7 +92,7 @@ const SendMessForm = (props) => {
     props.sendMess(temp, props.for);
     setTemp("");
   };
-  const [temp, setTemp] = useState();
+  const [temp, setTemp] = useState(); // value of input field
   return (
     <div style={{ width: "100%" }}>
       <Row align="bottom" justify="end">

@@ -3,26 +3,18 @@ import React from "react";
 import Post from "./Post/Post";
 import MessForm from "./PostForm";
 
-
-
-
-
 function MyPosts(props) {
-  
-
-
-
   function addPost(e) {
     props.addPost(e);
   }
-  let bebra = props.posts.map((L) => {
-    return <Post key={L.id} likes={L.likes} text={L.text} />;
+  let posts = props.posts.map((post) => {
+    return <Post key={post.id} likes={post.likes} text={post.text} />;
   });
-  
+
   return (
     <div>
       <MessForm temp={props.temp} tempPost={props.tempPost} addPost={addPost} />
-      {bebra}
+      {posts}
     </div>
   );
 }
